@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Left text message content-->
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/im_bubble_left"
+    android:orientation="vertical"
+    android:paddingBottom="12dp"
+    android:paddingTop="12dp">
+
+    <include
+        android:id="@+id/im_message_reply"
+        layout="@layout/im_message_reply"
+        android:visibility="gone"/>
+
+    <TextView
+        android:id="@+id/im_message_text"
+        style="@style/im_message_text_style"
+        android:paddingEnd="12dp"
+        android:paddingStart="12dp"
+        android:text="blah blah"
+        android:textColor="@color/im_message_text_color"/>
+</LinearLayout>

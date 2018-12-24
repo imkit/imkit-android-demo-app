@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Sticker View displayed in sticker picker -->
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="100dp"
+    android:layout_height="100dp"
+    android:background="@drawable/im_clickable_item_bg">
+
+    <android.support.v7.widget.AppCompatImageView
+        android:id="@+id/im_sticker_image"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="5dp"/>
+
+</RelativeLayout>

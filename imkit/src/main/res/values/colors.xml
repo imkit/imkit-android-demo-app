@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#f9f9f9</color>
+    <color name="colorPrimaryDark">#a2b1c1</color>
+    <color name="colorAccent">#3dbd81</color>
+
+    <color name="colorCommonBackground">#f9f9f9</color>
+
+    <color name="im_message_time_text_color">#a2b1c1</color>
+    <color name="im_message_read_text_color">#a2b1c1</color>
+    <color name="im_message_text_color">#2f3c4b</color>
+
+    <color name="im_incoming_text_color">#2f3c4b</color>
+    <color name="im_outgoing_text_color">#2f3c4b</color>
+
+    <color name="im_bubble_right">#ffffff</color>
+    <color name="im_bubble_right_border">#e8ebf0</color>
+    <color name="im_bubble_left">#e8ebf0</color>
+    <color name="im_button_tint">#7b92ad</color>
+    <color name="im_send_button_tint">#ffc200</color>
+    <color name="im_msg_button_tint">@color/gray_40</color>
+    <color name="im_badge">#ffffff</color>
+    <color name="im_badge_bg">#ffc200</color>
+
+    <color name="im_title">#2f3c4b</color>
+    <color name="im_last_message">#7b92ad</color>
+    <color name="im_last_message_time">#a2b1c1</color>
+
+    <color name="im_add_bg">#ffc200</color>
+    <color name="im_message_edit_bg_color">#80e8ebf0</color>
+    <color name="im_message_edit_hint_color">#a2b1c1</color>
+
+    <color name="im_message_system">#7b92ad</color>
+    <color name="im_message_system_bg">#ffffff</color>
+    <color name="im_message_system_bg_border">#d3d9e1</color>
+    <color name="im_message_reply_content">#4d5b6b</color>
+
+    <color name="colorRoomInfoFilter">@color/colorAccent</color>
+    <color name="im_message_status">@color/colorAccent</color>
+
+    <color name="im_leave_room_text">#ffffff</color>
+    <color name="im_leave_room_bg">#ffc200</color>
+
+    <color name="im_create_room_description_text">#bdc6d0</color>
+    <color name="im_create_room_text">#7b92ad</color>
+    <color name="im_create_room_bg">#dee2e7</color>
+
+    <color name="colorPinBG">#68a2ff</color>
+    <color name="colorPinText">#ffffff</color>
+</resources>

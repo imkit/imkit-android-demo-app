@@ -1,0 +1,107 @@
+<resources>
+    <string name="app_name">IMKIT</string>
+
+    <string name="im_unread_messages">Unread Messages</string>
+    <string name="im_voice_message">Voice Message</string>
+    <string name="im_send_message">輸入訊息⋯</string>
+
+    <string name="im_exit_room">Exit Room</string>
+    <string name="im_confirm_exit_room">Are you sure to exit this room?</string>
+    <string name="im_confirm">Confirm</string>
+    <string name="im_cancel">Cancel</string>
+    <string name="im_room_members">聊天室成員</string>
+    <string name="im_delete_member">Delete Member</string>
+    <string name="im_send">Send</string>
+    <string name="im_positioning">Positioning</string>
+    <string name="im_room_list_empty">還沒有私聊，點擊建立開始更好的溝通</string>
+    <string name="im_room_list_pin">Pin</string>
+    <string name="im_room_list_unpin">Unpin</string>
+
+    <string name="im_member_join">%1$s 已加入</string>
+    <string name="im_member_leave">%1$s left room</string>
+    <string name="im_sent_a_photo">%1$s sent a photo</string>
+    <string name="im_sent_a_video">%1$s sent a video</string>
+    <string name="im_sent_a_audio">%1$s sent a audio</string>
+    <string name="im_sent_a_sticker">%1$s sent a sticker</string>
+    <string name="im_sent_a_location">%1$s sent a location</string>
+    <string name="im_member_typing">%1$s is typing...</string>
+    <string name="im_read_count">已讀 %1$d</string>
+    <string name="im_add_members">%1$s 邀請 %2$s 加入聊天室</string>
+
+    <string name="im_url_description_default_text">Click here to open link</string>
+
+    <string name="im_loc_image">%1$s 傳送了一張相片</string>
+    <string name="im_loc_video">%1$s 傳送了一個視訊</string>
+    <string name="im_loc_sticker">%1$s 傳送了一張貼圖</string>
+
+    <string name="im_message_copy">複製</string>
+    <string name="im_message_delete">刪除</string>
+    <string name="im_message_resend">重送</string>
+    <string name="im_message_reply">回覆</string>
+    <string name="im_message_forward">轉發至群組</string>
+
+    <string name="im_room_list">私聊</string>
+    <string name="im_room_list_add">新增</string>
+
+    <string name="im_chat_picture">照片</string>
+    <string name="im_chat_sticker">貼圖</string>
+    <string name="im_chat_video">影片</string>
+    <string name="im_chat_voice">Voice</string>
+    <string name="im_chat_attachment">附件</string>
+    <string name="im_chat_location">地址位置</string>
+    <string name="im_chat_gallery">相簿</string>
+    <string name="im_chat_camera">相機</string>
+    <string name="im_chat_search">搜尋</string>
+    <string name="im_chat_setting">設定</string>
+    <string name="im_chat_leave">退出</string>
+
+    <string name="im_leave_room">退出聊天室</string>
+    <string name="im_create_room">建立私聊</string>
+    <string name="im_location_title">位置資訊</string>
+    <string name="im_exit_location_picker">離開</string>
+
+    <string name="leave_room">離開私密聊天</string>
+    <string name="action_send_invitation">發送邀請</string>
+    <string name="add_friend_content">你和 %s 還不是聯絡人，是否發送邀請將他加入你的聯絡人？</string>
+    <string name="add_friend_timestamp">昨天 03:00</string>
+
+    <string-array name="messageContextMenuTypeText">
+        <item>@string/im_message_copy</item>
+        <item>@string/im_message_reply</item>
+        <item>@string/im_message_forward</item>
+    </string-array>
+
+    <string-array name="messageContextMenuTypeSticker">
+        <item>@string/im_message_reply</item>
+    </string-array>
+
+    <string-array name="messageContextMenuTypeImage">
+        <item>@string/im_message_reply</item>
+        <item>@string/im_message_forward</item>
+    </string-array>
+
+    <string-array name="messageContextMenuTypeOthers">
+        <item>@string/im_message_reply</item>
+    </string-array>
+
+    <string name="actionRoomName">聊天室名稱</string>
+    <string name="actionRoomMembers">聊天室成員</string>
+    <string name="actionCreateGroupChatWithMembers">以聊天室成員建立群組</string>
+    <string name="switchNewMessage">新訊息通知</string>
+    <string name="switchPinRoom">聊天室置頂</string>
+    <string name="actionClearHistory">清除所有對話紀錄</string>
+    <string name="actionCreatePrivateChat">建立私密聊天</string>
+    <string name="actionCreateGroupChat">建立群組聊天室</string>
+    <string name="actionBlock">封鎖</string>
+    <string name="actionLeaveRoom">退出聊天室</string>
+    <string name="roomSetting">聊天室設定</string>
+    <string name="groupRoomSetting">群組聊天室設定</string>
+
+    <string name="modifyRoomName">變更聊天室名稱</string>
+    <string name="actionCancel">取消</string>
+    <string name="actionSave">儲存</string>
+
+    <string name="roomMember">群組成員</string>
+    <string name="manager">管理員</string>
+
+</resources>

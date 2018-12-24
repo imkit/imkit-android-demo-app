@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- System message view -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:paddingBottom="6dp"
+    android:paddingTop="6dp">
+
+    <android.support.v7.widget.AppCompatTextView
+        android:id="@+id/im_message_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:background="@drawable/im_message_system_bg"
+        android:fontFamily="sans-serif"
+        android:gravity="center"
+        android:minHeight="20dp"
+        android:paddingBottom="6dp"
+        android:paddingEnd="16dp"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:paddingStart="16dp"
+        android:paddingTop="6dp"
+        android:text=""
+        android:textColor="@color/im_message_system"
+        android:textSize="@dimen/text_small"/>
+
+</LinearLayout>

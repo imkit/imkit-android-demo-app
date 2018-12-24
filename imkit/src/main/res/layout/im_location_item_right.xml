@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Right location message view content -->
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginRight="0dp"
+    android:orientation="vertical"
+    android:background="@drawable/im_bubble_right"
+    style="@style/im_message_bubble">
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center">
+        <android.support.v7.widget.AppCompatImageView
+            android:id="@+id/im_location_icon"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/ic_location"/>
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/im_message_text"
+            style="@style/im_message_text_style"
+            android:text="blah blah"/>
+    </LinearLayout>
+</LinearLayout>

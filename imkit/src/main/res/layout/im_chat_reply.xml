@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="10dp"
+    android:background="@color/gray_10">
+
+    <com.imkit.widget.CircleImageView
+        android:id="@+id/im_chat_reply_avatar"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_gravity="center_vertical"
+        android:layout_marginRight="10dp"
+        android:src="@color/colorPrimary"/>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:orientation="vertical">
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/im_chat_reply_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/text_small"
+            android:lines="1"
+            android:textColor="@color/gray_80"
+            android:text="name"/>
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/im_chat_reply_message"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/text_medium"
+            android:lines="1"
+            android:ellipsize="end"
+            android:textColor="@color/gray_60"
+            android:text="message"/>
+
+    </LinearLayout>
+
+    <Space
+        android:layout_width="10dp"
+        android:layout_height="match_parent" />
+
+    <android.support.v7.widget.AppCompatImageView
+        android:id="@+id/im_chat_reply_cancel"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:src="@drawable/ic_search_cancel_big"
+        android:layout_gravity="top|right"/>
+
+</LinearLayout>

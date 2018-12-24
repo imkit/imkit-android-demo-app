@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Left image message content -->
+<com.imkit.widget.RoundedImageView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/im_image_view"
+    android:layout_width="@dimen/im_image_longer_edge"
+    android:layout_height="@dimen/im_image_longer_edge"
+    android:scaleType="centerCrop"
+    app:topLeftRadius="0dp"
+    app:topRightRadius="12dp"
+    app:bottomLeftRadius="12dp"
+    app:bottomRightRadius="12dp"/>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Right message view container -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="end"
+    android:orientation="vertical"
+    android:paddingBottom="4dp"
+    android:paddingLeft="@dimen/im_message_horizontal_padding"
+    android:paddingRight="@dimen/im_message_horizontal_padding"
+    android:paddingTop="4dp">
+
+    <LinearLayout
+        android:id="@+id/im_message_body"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/im_message_time"
+            style="@style/im_message_time"
+            android:layout_gravity="end"
+            android:text="hh:mm"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/im_message_read"
+                style="@style/im_message_read"
+                android:layout_gravity="bottom"
+                android:layout_marginBottom="4dp"
+                android:text="# read"/>
+
+            <FrameLayout
+                android:id="@+id/im_message_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginBottom="4dp"
+                android:layout_marginTop="4dp"/>
+
+            <android.support.v7.widget.AppCompatImageView
+                android:id="@+id/im_message_state_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="4dp"
+                android:layout_marginStart="4dp"/>
+        </LinearLayout>
+
+    </LinearLayout>
+</LinearLayout>

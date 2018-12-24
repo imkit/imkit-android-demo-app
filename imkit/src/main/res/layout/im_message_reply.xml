@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingBottom="4dp"
+        android:paddingEnd="12dp"
+        android:paddingStart="12dp"
+        android:paddingTop="4dp">
+
+        <FrameLayout
+            android:layout_width="22dp"
+            android:layout_height="22dp">
+
+            <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/im_avatar_placeholder"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/im_avatar_placeholder"
+                android:gravity="center"
+                android:textAllCaps="true"
+                android:textColor="@color/gray_80"
+                android:textSize="@dimen/text_xlarge"/>
+
+            <com.imkit.widget.CircleImageView
+                android:id="@+id/im_message_reply_avatar"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+        </FrameLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="4dp"
+            android:layout_marginStart="4dp"
+            android:orientation="vertical">
+
+            <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/im_message_reply_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:lines="1"
+                android:text="name"
+                android:textColor="@color/gray_100"
+                android:textSize="@dimen/text_medium"
+                android:textStyle="bold"/>
+
+            <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/im_message_reply_message"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="2"
+                android:text="message"
+                android:textColor="@color/im_message_reply_content"
+                android:textSize="@dimen/text_medium"/>
+
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/im_reply_image_view"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_marginLeft="4dp"/>
+    </LinearLayout>
+</LinearLayout>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Left video message content -->
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <com.imkit.widget.RoundedImageView
+        android:id="@+id/im_image_view"
+        android:layout_width="@dimen/im_image_longer_edge"
+        android:layout_height="@dimen/im_image_longer_edge"
+        android:scaleType="centerCrop"
+        app:topLeftRadius="0dp"
+        app:topRightRadius="12dp"
+        app:bottomLeftRadius="12dp"
+        app:bottomRightRadius="12dp"/>
+
+    <android.support.v7.widget.AppCompatImageView
+        android:id="@+id/im_video_controller_view"
+        android:layout_width="65dp"
+        android:layout_height="65dp"
+        android:layout_centerInParent="true"
+        android:layout_centerVertical="true"
+        android:src="@drawable/ic_play_circle_filled"/>
+
+</RelativeLayout>

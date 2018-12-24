@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="20dp">
+
+    <android.support.v7.widget.AppCompatEditText
+        android:id="@+id/dialog_create_room_name"
+        android:layout_width="match_parent"
+        android:hint="Room Name"
+        android:layout_height="40dp" />
+    
+    <android.support.v7.widget.AppCompatTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="5dp"
+        android:textSize="16sp"
+        android:text="Invite user to room" />
+
+    <android.support.v7.widget.AppCompatEditText
+        android:id="@+id/dialog_create_room_invitee"
+        android:layout_width="match_parent"
+        android:hint="Invitee"
+        android:layout_height="40dp" />
+
+</LinearLayout>

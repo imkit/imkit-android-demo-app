@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Room member list item view -->
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/im_clickable_item_bg"
+    android:clickable="true"
+    android:minHeight="60dp"
+    android:paddingBottom="@dimen/im_room_vertical_padding"
+    android:paddingLeft="@dimen/im_room_horizontal_padding"
+    android:paddingRight="@dimen/im_room_horizontal_padding"
+    android:paddingTop="@dimen/im_room_vertical_padding">
+
+    <FrameLayout
+        android:id="@+id/im_avatar_frame"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="10dp">
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/im_avatar_placeholder"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/im_avatar_placeholder"
+            android:gravity="center"
+            android:textAllCaps="true"
+            android:textColor="@color/gray_80"
+            android:textSize="@dimen/text_xlarge"
+            />
+
+        <com.imkit.widget.CircleImageView
+            android:id="@+id/im_avatar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            />
+    </FrameLayout>
+
+    <android.support.v7.widget.AppCompatTextView
+        android:id="@+id/im_member_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/im_avatar_frame"
+        android:textStyle="bold"/>
+
+    <android.support.v7.widget.AppCompatTextView
+        android:id="@+id/im_member_description"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/im_member_name"
+        android:layout_toRightOf="@id/im_avatar_frame"
+        android:ellipsize="end"
+        android:maxLines="3"/>
+
+    <android.support.v7.widget.AppCompatImageView
+        android:id="@+id/im_member_more_button"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:src="@drawable/ic_more_vert"/>
+
+</RelativeLayout>

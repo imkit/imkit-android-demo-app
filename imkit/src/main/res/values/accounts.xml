@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="accounts">
+        <item>Test1</item>
+        <item>Test2</item>
+    </string-array>
+
+    <string-array name="tokens">
+        <item>fVy7YhqBZqEzNO9LhMmcyA==</item>
+        <item>kuPJOBct4grNxiQzB8ZXQA==</item>
+    </string-array>
+</resources>
