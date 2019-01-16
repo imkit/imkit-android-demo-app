@@ -363,24 +363,24 @@ public class IMKIT {
     }
 
     //多人聊天室 (2人以上，會有邀請訊息)
-    public static void createRoomWithUsers(ArrayList<String> userIds, final IIMKIT.CreateRoom callback) {
+    public static void createRoomWithUsers(Context context, ArrayList<String> userIds, final IIMKIT.CreateRoom callback) {
         if (IMKit.instance().getToken() == null || IMKit.instance().getToken().isEmpty()) {
             callback.failed("no token found");
             return;
         }
 
         Room room = new Room();
-        room.setId(Helper.getRoomId(userIds, IMKit.instance().currentClient().getId()));
-        IMKit.instance().createAndJoinRoom(room, userIds, new IMRestCallback<Room>() {
+//        room.setId(Helper.getRoomId(userIds, IMKit.instance().currentClient().getId()));
+        IMKit.instance().createAndJoinRoom(room, userIds, true, new IMRestCallback<Room>() {
             @Override
             public void onResult(Room room) {
-                callback.success(room.getId(), Utils.getDisplayRoomTitle(room));
+                callback.success(room.getId(), Utils.getDisplayRoomTitle(context, room));
             }
         });
     }
 
     //兩人聊天室 (不會有邀請訊息)
-    public static void createRoomWithUser(String userId, final IIMKIT.CreateRoom callback) {
+    public static void createRoomWithUser(Context context, String userId, final IIMKIT.CreateRoom callback) {
         if (IMKit.instance().getToken() == null || IMKit.instance().getToken().isEmpty()) {
             callback.failed("no token found");
             return;
@@ -388,10 +388,10 @@ public class IMKIT {
 
         Room room = new Room();
         room.setId(Helper.getRoomId(userId, IMKit.instance().currentClient().getId()));
-        IMKit.instance().createAndJoinRoom(room, userId, new IMRestCallback<Room>() {
+        IMKit.instance().createAndJoinRoom(room, userId, false, new IMRestCallback<Room>() {
             @Override
             public void onResult(Room room) {
-                callback.success(room.getId(), Utils.getDisplayRoomTitle(room));
+                callback.success(room.getId(), Utils.getDisplayRoomTitle(context, room));
             }
         });
     }

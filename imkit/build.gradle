@@ -35,10 +35,10 @@ dependencies {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
 
-    implementation('com.imkit:imkit-sdk-v3:3.0.52@aar') {
+    implementation('com.imkit:imkit-sdk-v3:3.0.79@aar') {
         transitive = true
     }
-    implementation('com.imkit:imkit-widget-v3:3.0.52@aar')
+    implementation('com.imkit:imkit-widget-v3:3.0.79@aar')
     implementation 'com.android.support:support-v4:27.1.1'
     implementation 'com.android.support:cardview-v7:27.1.1'
     implementation 'com.kbeanie:multipicker:1.5@aar'

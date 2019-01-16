@@ -92,7 +92,7 @@ public class CustomRoomListFragment extends com.imkit.widget.fragment.RoomListFr
                     if (list.size() == 0) {
                         Toast.makeText(getContext(), "Please select at least one users", Toast.LENGTH_SHORT).show();
                     } else if (list.size() == 1) {
-                        IMKIT.createRoomWithUser(String.valueOf(list.get(0)), new IIMKIT.CreateRoom() {
+                        IMKIT.createRoomWithUser(getContext(), String.valueOf(list.get(0)), new IIMKIT.CreateRoom() {
                             @Override
                             public void success(String roomId, String title) {
                                 Toast.makeText(getContext(), "Room Created", Toast.LENGTH_SHORT).show();
@@ -110,7 +110,7 @@ public class CustomRoomListFragment extends com.imkit.widget.fragment.RoomListFr
                             users.add(String.valueOf(id));
                         }
 
-                        IMKIT.createRoomWithUsers(users, new IIMKIT.CreateRoom() {
+                        IMKIT.createRoomWithUsers(getContext(), users, new IIMKIT.CreateRoom() {
                             @Override
                             public void success(String roomId, String title) {
                                 Toast.makeText(getContext(), "Room Created", Toast.LENGTH_SHORT).show();
@@ -174,7 +174,7 @@ public class CustomRoomListFragment extends com.imkit.widget.fragment.RoomListFr
         room.setName(roomName);
         room.setCover("");
         room.setDescription("Demo room " + roomName);
-        IMKit.instance().createAndJoinRoom(room, inviteeId, new IMRestCallback<Room>() {
+        IMKit.instance().createAndJoinRoom(room, inviteeId, false, new IMRestCallback<Room>() {
             @Override
             public void onResult(Room result) {
                 loadRooms();

@@ -144,7 +144,7 @@ class Helper {
         room.setName(roomName);
         room.setCover("");
         room.setDescription("Demo room " + roomName);
-        IMKit.instance().createAndJoinRoom(room, inviteeId, new IMRestCallback<Room>() {
+        IMKit.instance().createAndJoinRoom(room, inviteeId, false, new IMRestCallback<Room>() {
             @Override
             public void onResult(Room room) {
                 callback.success(room);

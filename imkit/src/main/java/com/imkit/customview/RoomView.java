@@ -98,7 +98,8 @@ public class RoomView extends IMRoomViewHolder {
     }
 
     protected void setSwipeLayout(final Room room) {
-        swipeLayout.setSwipeEnabled(IMWidgetPreferences.getInstance().isRoomPinEnable());
+//        swipeLayout.setSwipeEnabled(IMWidgetPreferences.getInstance().isRoomPinEnable());
+        swipeLayout.setSwipeEnabled(false);
         swipeLayout.addDrag(SwipeLayout.DragEdge.Left, viewSwipeItem);
         swipeLayout.setRightSwipeEnabled(false);
         swipeLayout.close(true);
