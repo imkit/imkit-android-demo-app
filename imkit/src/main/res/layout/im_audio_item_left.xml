@@ -1,22 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Left audio message content -->
 <LinearLayout
-    android:id="@+id/im_message_view"
-    style="@style/im_message_bubble"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/im_message_view"
     android:layout_width="250dp"
     android:layout_height="wrap_content"
     android:background="@drawable/im_bubble_left"
     android:gravity="center_vertical"
-    android:orientation="horizontal">
+    android:orientation="horizontal"
+    style="@style/im_message_bubble">
 
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:layout_marginRight="10dp">
-
+        android:layout_marginRight="10dp"
+        android:layout_centerVertical="true">
         <android.support.v7.widget.AppCompatImageView
             android:id="@+id/im_audio_controller_view"
             android:layout_width="38dp"
@@ -29,22 +28,15 @@
             android:layout_width="54dp"
             android:layout_height="54dp"
             android:layout_centerInParent="true"
-            android:visibility="gone"
             app:donut_finished_color="@color/gray_100"
             app:donut_finished_stroke_width="8dp"
+            app:donut_unfinished_color="@color/gray_60"
+            app:donut_unfinished_stroke_width="8dp"
+            app:donut_text_color="@color/white"
             app:donut_max="100"
             app:donut_progress="0"
-            app:donut_text_color="@color/white"
-            app:donut_text_size="0dp"
-            app:donut_unfinished_color="@color/gray_60"
-            app:donut_unfinished_stroke_width="8dp"/>
-
-        <ImageView
-            android:id="@+id/cancel_action"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:src="@drawable/ic_nav_cancel_white"/>
+            app:donut_text_size="@dimen/text_medium"
+            android:visibility="gone"/>
     </RelativeLayout>
 
     <TextView

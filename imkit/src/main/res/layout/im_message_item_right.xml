@@ -3,53 +3,49 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:gravity="end"
-    android:orientation="vertical"
+    android:gravity="right"
     android:paddingBottom="4dp"
     android:paddingLeft="@dimen/im_message_horizontal_padding"
     android:paddingRight="@dimen/im_message_horizontal_padding"
-    android:paddingTop="4dp">
+    android:paddingTop="4dp"
+    android:orientation="vertical">
 
-    <LinearLayout
+    <RelativeLayout
         android:id="@+id/im_message_body"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_height="wrap_content">
+
+        <FrameLayout
+            android:id="@+id/im_message_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginLeft="40dp"/>
 
         <android.support.v7.widget.AppCompatTextView
             android:id="@+id/im_message_time"
             style="@style/im_message_time"
-            android:layout_gravity="end"
+            android:layout_alignRight="@id/im_message_view"
+            android:layout_below="@id/im_message_view"
+            android:gravity="right"
             android:text="hh:mm"/>
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+        <android.support.v7.widget.AppCompatImageView
+            android:id="@+id/im_message_state_icon"
+            style="@style/im_message_state_icon"
+            android:layout_alignTop="@id/im_message_time"
+            android:layout_toLeftOf="@id/im_message_time"
+            />
 
-            <android.support.v7.widget.AppCompatTextView
-                android:id="@+id/im_message_read"
-                style="@style/im_message_read"
-                android:layout_gravity="bottom"
-                android:layout_marginBottom="4dp"
-                android:text="# read"/>
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/im_message_read"
+            style="@style/im_message_read"
+            android:layout_alignTop="@id/im_message_time"
+            android:layout_toLeftOf="@id/im_message_state_icon"
+            android:gravity="right"
+            android:text="# read"
+            layout_alignTop="@id/im_message_time"
+            layout_toLeftOf="@id/im_message_state_icon" />
 
-            <FrameLayout
-                android:id="@+id/im_message_view"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_marginBottom="4dp"
-                android:layout_marginTop="4dp"/>
-
-            <android.support.v7.widget.AppCompatImageView
-                android:id="@+id/im_message_state_icon"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_marginLeft="4dp"
-                android:layout_marginStart="4dp"/>
-        </LinearLayout>
-
-    </LinearLayout>
+    </RelativeLayout>
 </LinearLayout>

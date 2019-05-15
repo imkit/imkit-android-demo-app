@@ -9,6 +9,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -36,11 +37,15 @@ import retrofit2.Response;
 
 public class IMKIT {
 
-    public static void init(Context context) {
+    private static String currentActiveRoomID = "";
+
+    public static void init(Context context, String url, String clientKey, String bucketName, String providerAuthority) {
+        IMKit.setDebugLog(false);
+
         IMKit.instance()
-                .setUrl(context.getString(R.string.IMKIT_URL))
-                .setClientKey(context.getString(R.string.IMKIT_CLIENT_KEY))
-                .setBucketName(context.getString(R.string.IMKIT_BUCKET_NAME))
+                .setUrl(url)
+                .setClientKey(clientKey)
+                .setBucketName(bucketName)
                 .init(context);
 
         /**
@@ -53,7 +58,7 @@ public class IMKIT {
          *      <files-path name="audios" path="audios"/>
          *      <files-path name="docs" path="files"/>
          */
-        IMKit.instance().setProviderAuthority(context.getPackageName() + ".fileProvider");
+        IMKit.instance().setProviderAuthority(providerAuthority);
 
         // IMKit Widget Style
         IMWidgetPreferences.getInstance().setLeftBubbleDrawableRes(R.drawable.im_bubble_left);
@@ -93,6 +98,20 @@ public class IMKIT {
         // Custom Message View
         IMWidgetPreferences.getInstance().registerMessageViewFactory(IMMessageViewHolder.ITEM_VIEW_TYPE_JOIN_ROOM, new JoinRoomMessageView.Factory());
         IMWidgetPreferences.getInstance().registerMessageViewFactory(IMMessageViewHolder.ITEM_VIEW_TYPE_LEAVE_ROOM, new LeaveRoomMessageView.Factory());
+
+        IMKit.instance().setSSLTrustAll(true);
+//        IMKit.instance().setHoldToRecordVoice(true);
+        IMKit.instance().setTimeout(120000);
+
+        IMKit.instance().setChatRoomType(IMKit.ChatRoomType.Gamania);
+        IMKit.instance().setRoomInfoType(IMKit.RoomInfoType.Gamania);
+        IMKit.instance().setLocationFullMap(true);
+
+        IMWidgetPreferences.getInstance().setShowTyping(true);
+
+        IMWidgetPreferences.getInstance().setRoomPinEnable(true);
+
+        IMWidgetPreferences.getInstance().setMultipleForward(true);
     }
 
     public static void login(Activity activity, String name, final IIMKIT.Login callback) {
@@ -146,9 +165,9 @@ public class IMKIT {
         final IIMKIT.CreateRoomInner createRoomCallback = new IIMKIT.CreateRoomInner() {
             @Override
             public void success(Room room) {
-                callback.success(room.getId(), Utils.getDisplayRoomTitle(room));
+                callback.success(room.getId(), Utils.getDisplayRoomTitle(activity, room));
                 if (autoEnter) {
-                    IMKIT.showChat(activity, room.getId(), Utils.getDisplayRoomTitle(room), requestCode);
+                    IMKIT.showChat(activity, room.getId(), Utils.getDisplayRoomTitle(activity, room), requestCode);
                 }
             }
 
@@ -198,7 +217,7 @@ public class IMKIT {
 
                 @Override
                 public void onRoomSelect(Room room) {
-                    IMKIT.showChat(activity, room.getId(), Utils.getDisplayRoomTitle(room), 7000);
+                    IMKIT.showChat(activity, room.getId(), Utils.getDisplayRoomTitle(activity, room), 7000);
                 }
 
                 @Override
@@ -220,10 +239,22 @@ public class IMKIT {
     }
 
     public static void showChat(Activity activity, String roomId, String title, int requestCode) {
-        Intent intent = new Intent(activity, ChatActivity.class);
-        intent.putExtra("roomId", roomId);
-        intent.putExtra("title", title);
-        activity.startActivityForResult(intent, requestCode);
+        if (title.isEmpty()) {
+            IMKit.instance().getRoom(roomId, new IMRestCallback<Room>() {
+                @Override
+                public void onResult(Room room) {
+                    Intent intent = new Intent(activity, ChatActivity.class);
+                    intent.putExtra("roomId", room.getId());
+                    intent.putExtra("title", Utils.getDisplayRoomTitle(activity, room));
+                    activity.startActivityForResult(intent, requestCode);
+                }
+            });
+        } else {
+            Intent intent = new Intent(activity, ChatActivity.class);
+            intent.putExtra("roomId", roomId);
+            intent.putExtra("title", title);
+            activity.startActivityForResult(intent, requestCode);
+        }
     }
 
     public static void showRoomInfo(final Activity activity, final String roomId, final String title, final int requestCode, final IIMKIT.RoomInfo callback) {
@@ -268,6 +299,7 @@ public class IMKIT {
         IMKit.instance().updateMe(client, new IMRestCallback<Client>() {
             @Override
             public void onResult(Client client) {
+                Log.i("IMKIT", "updateMe result = " + client);
                 IMKit.instance().connect();
                 callback.success();
             }
@@ -324,6 +356,10 @@ public class IMKIT {
     public static void refreshToken(String accessToken) {
         IMKit.instance().setToken(accessToken);
         IMKit.instance().addExtraImageRequestHeader("AccessToken", accessToken);
+    }
+
+    public static String getToken() {
+        return IMKit.instance().getToken();
     }
 
     public static void updateUser(String userDisplayName, String userAvatarUrl, String userDescription, final IIMKIT.UpdateUser callback) {
@@ -400,6 +436,9 @@ public class IMKIT {
         IMKit.instance().getBadge(new IMRestCallback<Badge>() {
             @Override
             public void onResult(Badge result) {
+                if (callback == null) {
+                    return;
+                }
                 if (result != null) {
                     callback.response(result.getBadge());
                 } else {
@@ -407,5 +446,13 @@ public class IMKIT {
                 }
             }
         });
+    }
+
+    public static String getCurrentActiveRoomID() {
+        return currentActiveRoomID;
+    }
+
+    static void setCurrentActiveRoomID(String roomID) {
+        IMKIT.currentActiveRoomID = roomID;
     }
 }

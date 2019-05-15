@@ -2,15 +2,19 @@ package com.imkit;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.imkit.sdk.IMKit;
 import com.imkit.sdk.model.Room;
 import com.imkit.widget.fragment.RoomListFragment;
 import com.imkit.widget.utils.Utils;
 
 public class RoomListActivity extends AppCompatActivity {
+
+    private static final String TAG = "RoomListActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,7 +29,7 @@ public class RoomListActivity extends AppCompatActivity {
              */
             @Override
             public void onRoomSelect(Room room) {
-                IMKIT.showChat(RoomListActivity.this, room.getId(), Utils.getDisplayRoomTitle(room), 7000);
+                IMKIT.showChat(RoomListActivity.this, room.getId(), Utils.getDisplayRoomTitle(RoomListActivity.this, room), 7000);
             }
 
             /**
@@ -46,5 +50,17 @@ public class RoomListActivity extends AppCompatActivity {
             }
         });
         getSupportFragmentManager().beginTransaction().add(R.id.container, fragment, fragment.getClass().getSimpleName()).commit();
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        Log.d(TAG, "onStart");
+
+        IMKit.instance().disconnect();
+        IMKit.instance().connect();
+
+        IMKIT.getBadge(null);
     }
 }

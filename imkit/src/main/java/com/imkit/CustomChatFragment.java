@@ -10,6 +10,8 @@ import com.imkit.widget.fragment.IChatFragment;
 
 public class CustomChatFragment extends com.imkit.widget.fragment.ChatFragment implements IChatFragment {
 
+    public final int REQ_ROOM_INFO = 7000;
+
     public interface Listener {
         void doLeaveRoom();
     }

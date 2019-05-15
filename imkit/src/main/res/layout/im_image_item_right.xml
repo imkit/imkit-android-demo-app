@@ -5,16 +5,15 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content">
-
     <com.imkit.widget.RoundedImageView
         android:id="@+id/im_image_view"
         android:layout_width="@dimen/im_image_longer_edge"
         android:layout_height="@dimen/im_image_longer_edge"
         android:scaleType="centerCrop"
-        app:bottomLeftRadius="12dp"
-        app:bottomRightRadius="12dp"
         app:topLeftRadius="12dp"
-        app:topRightRadius="0dp"/>
+        app:topRightRadius="0dp"
+        app:bottomLeftRadius="12dp"
+        app:bottomRightRadius="12dp"/>
 
     <com.imkit.widget.circleprogress.DonutProgress
         android:id="@+id/im_sending_progress"
@@ -22,20 +21,13 @@
         android:layout_height="80dp"
         android:layout_centerInParent="true"
         android:layout_centerVertical="true"
-        android:visibility="gone"
         app:donut_finished_color="@color/colorPrimary"
         app:donut_finished_stroke_width="8dp"
+        app:donut_unfinished_color="@color/colorPrimaryDark"
+        app:donut_unfinished_stroke_width="8dp"
+        app:donut_text_color="@color/white"
         app:donut_max="100"
         app:donut_progress="0"
-        app:donut_text_color="@color/white"
-        app:donut_text_size="0dp"
-        app:donut_unfinished_color="@color/colorPrimaryDark"
-        app:donut_unfinished_stroke_width="8dp"/>
-
-    <ImageView
-        android:id="@+id/cancel_action"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:src="@drawable/ic_nav_cancel_white"/>
+        app:donut_text_size="@dimen/text_medium"
+        android:visibility="gone"/>
 </RelativeLayout>

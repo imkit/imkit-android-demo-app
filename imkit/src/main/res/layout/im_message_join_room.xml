@@ -3,31 +3,27 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="8dp"
-    android:layout_marginEnd="16dp"
-    android:layout_marginStart="16dp"
-    android:layout_marginTop="8dp"
-    android:background="@drawable/im_message_join_room_bg"
     android:gravity="center"
-    android:orientation="horizontal"
-    android:padding="8dp">
+    android:paddingBottom="6dp"
+    android:paddingTop="6dp"
+    android:orientation="horizontal">
 
     <android.support.v7.widget.AppCompatImageView
         android:id="@+id/im_message_icon"
         android:layout_width="24dp"
-        android:layout_height="24dp"
-        android:visibility="gone"/>
+        android:layout_height="24dp" />
 
     <android.support.v7.widget.AppCompatTextView
         android:id="@+id/im_message_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
         android:layout_gravity="center"
+        android:layout_centerInParent="true"
         android:fontFamily="sans-serif"
         android:gravity="center"
         android:text=""
-        android:textColor="#4d5b6b"
-        android:textSize="@dimen/text_small"/>
+        android:textColor="#000000"
+        android:textSize="@dimen/text_small"
+        />
 
 </LinearLayout>

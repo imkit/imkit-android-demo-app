@@ -16,11 +16,9 @@ public class RoomInfoActivity extends AppCompatActivity {
         CustomRoomInfoFragment fragment = CustomRoomInfoFragment.newInstance(id, title);
         getSupportFragmentManager().beginTransaction().add(R.id.container, fragment, fragment.getClass().getSimpleName()).commit();
 
-        fragment.setListener(new CustomRoomInfoFragment.RoomInfoFragmentListener() {
-            @Override
-            public void roomLeaved() {
-                onBackPressed();
-            }
+        fragment.setListener(() -> {
+            setResult(RESULT_OK);
+            finish();
         });
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);

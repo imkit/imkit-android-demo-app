@@ -11,6 +11,7 @@ import android.widget.TextView;
 import com.imkit.R;
 import com.imkit.sdk.model.Message;
 import com.imkit.widget.IMMessageViewHolder;
+import com.imkit.widget.fragment.ChatFragment;
 
 /**
  * Leave-Room Message View Sample
@@ -19,6 +20,11 @@ import com.imkit.widget.IMMessageViewHolder;
 public class LeaveRoomMessageView extends IMMessageViewHolder {
 
     static public class Factory implements IMMessageViewHolder.Factory {
+
+        @Override
+        public IMMessageViewHolder instantiate(Context context, ViewGroup container, int viewType, ChatFragment chatFragment) {
+            return null;
+        }
 
         @Override
         public IMMessageViewHolder instantiate(Context context, ViewGroup container, int viewType) {
@@ -49,6 +55,11 @@ public class LeaveRoomMessageView extends IMMessageViewHolder {
 
     @Override
     public void setNumRead(int count) {
+
+    }
+
+    @Override
+    public void setForwardVisibility(boolean isVisible) {
 
     }
 

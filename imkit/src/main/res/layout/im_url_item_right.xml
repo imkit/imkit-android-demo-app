@@ -1,20 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Right text message content-->
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<RelativeLayout style="@style/im_message_bubble"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
+    android:layout_marginEnd="0dp"
     android:layout_marginRight="0dp"
-    android:orientation="vertical"
     android:background="@drawable/im_bubble_right"
-    style="@style/im_message_bubble">
+    android:orientation="vertical">
+
     <TextView
         android:id="@+id/im_message_text"
         style="@style/im_message_text_style"
-        android:textColor="@color/white"
         android:text="blah blah"/>
 
     <include
         android:id="@+id/url_preview_layout"
-        layout="@layout/im_url_preview"/>
-</LinearLayout>
+        layout="@layout/im_url_preview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/im_message_text"
+        android:layout_margin="8dp"/>
+
+    <View
+        android:layout_width="1dp"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/url_preview_layout"
+        android:layout_alignTop="@+id/url_preview_layout"
+        android:background="@color/colorAccent"/>
+</RelativeLayout>
