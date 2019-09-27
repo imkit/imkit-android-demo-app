@@ -6,7 +6,7 @@
     android:gravity="center"
     android:orientation="vertical">
 
-    <android.support.v7.widget.AppCompatTextView
+    <androidx.appcompat.widget.AppCompatTextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -14,7 +14,7 @@
         android:textColor="@color/im_create_room_description_text"
         android:textSize="@dimen/text_large"/>
 
-    <android.support.v7.widget.AppCompatTextView
+    <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/txtCreateRoom"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

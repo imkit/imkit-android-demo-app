@@ -1,11 +1,12 @@
 package com.imkit;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.imkit.sdk.IMKit;
 import com.imkit.sdk.model.Room;

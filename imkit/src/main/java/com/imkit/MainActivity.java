@@ -7,12 +7,6 @@ import android.content.IntentFilter;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
-import android.support.v4.content.ContextCompat;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -22,6 +16,13 @@ import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.ImageView;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.imkit.sdk.ApiResponse;
 import com.imkit.sdk.BuildConfig;
@@ -55,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
 //            return;
 //        }
 
-        drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+        drawerLayout = findViewById(R.id.drawer_layout);
         View logoutButton = findViewById(R.id.nav_logout);
         logoutButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -271,7 +272,7 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             }
             Log.d(TAG, "open drawer");
-            drawerLayout.openDrawer(Gravity.START, true);
+            drawerLayout.openDrawer(Gravity.LEFT, true);
             return true;
         }
 

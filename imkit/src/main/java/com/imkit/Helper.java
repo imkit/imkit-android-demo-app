@@ -6,9 +6,10 @@ import android.content.Context;
 import android.content.pm.PackageManager;
 import android.os.AsyncTask;
 import android.os.Build;
-import android.support.v4.app.ActivityCompat;
 import android.telephony.TelephonyManager;
 import android.text.TextUtils;
+
+import androidx.core.app.ActivityCompat;
 
 import com.imkit.sdk.ApiResponse;
 import com.imkit.sdk.IMKit;

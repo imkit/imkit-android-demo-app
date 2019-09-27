@@ -22,7 +22,7 @@
             android:layout_alignParentRight="true"
             android:layout_marginLeft="40dp"/>
 
-        <android.support.v7.widget.AppCompatTextView
+        <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/im_message_time"
             style="@style/im_message_time"
             android:layout_alignRight="@id/im_message_view"
@@ -30,14 +30,14 @@
             android:gravity="right"
             android:text="hh:mm"/>
 
-        <android.support.v7.widget.AppCompatImageView
+        <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/im_message_state_icon"
             style="@style/im_message_state_icon"
             android:layout_alignTop="@id/im_message_time"
             android:layout_toLeftOf="@id/im_message_time"
             />
 
-        <android.support.v7.widget.AppCompatTextView
+        <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/im_message_read"
             style="@style/im_message_read"
             android:layout_alignTop="@id/im_message_time"

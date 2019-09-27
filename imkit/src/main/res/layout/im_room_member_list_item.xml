@@ -17,7 +17,7 @@
         android:layout_height="50dp"
         android:layout_marginRight="10dp"
         android:layout_centerVertical="true">
-        <android.support.v7.widget.AppCompatTextView
+        <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/im_avatar_placeholder"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -34,14 +34,14 @@
             />
     </FrameLayout>
 
-    <android.support.v7.widget.AppCompatTextView
+    <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/im_member_name"
         android:layout_toRightOf="@id/im_avatar_frame"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textStyle="bold"/>
 
-    <android.support.v7.widget.AppCompatTextView
+    <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/im_member_description"
         android:layout_toRightOf="@id/im_avatar_frame"
         android:layout_below="@id/im_member_name"
@@ -50,7 +50,7 @@
         android:maxLines="3"
         android:ellipsize="end"/>
 
-    <android.support.v7.widget.AppCompatImageView
+    <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/im_member_more_button"
         android:layout_width="30dp"
         android:layout_height="30dp"

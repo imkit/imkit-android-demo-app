@@ -16,7 +16,7 @@
         android:layout_height="wrap_content"
         android:layout_marginRight="10dp"
         android:layout_centerVertical="true">
-        <android.support.v7.widget.AppCompatImageView
+        <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/im_audio_controller_view"
             android:layout_width="38dp"
             android:layout_height="38dp"
