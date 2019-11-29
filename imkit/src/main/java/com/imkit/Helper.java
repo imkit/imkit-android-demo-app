@@ -21,6 +21,9 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -165,33 +168,56 @@ class Helper {
     static String getRoomId(ArrayList<String> userIds, String clientId) {
         ArrayList<String> temp = new ArrayList<>();
         for (String id : userIds) {
-            temp.add(id);
+            temp.add(id.toLowerCase());
         }
         temp.add(clientId);
 
-        Comparator comparator = new Comparator<String>() {
-            @Override
-            public int compare(String o1, String o2) {
-                return o1.compareTo(o2);
-            }
-        };
+        Comparator comparator = (Comparator<String>) (o1, o2) -> o1.compareTo(o2);
         Collections.sort(temp, comparator);
 
         StringBuilder stringBuilder = new StringBuilder();
         for (String id : temp) {
             stringBuilder.append(id);
-            stringBuilder.append("-");
+            stringBuilder.append("_");
+        }
+        if (stringBuilder.length() > 0) {
+            stringBuilder.setLength(stringBuilder.length() - 1);
         }
 
-        return stringBuilder.toString();
+        return convertToMD5(stringBuilder.toString());
     }
 
-    static String getRoomId(String userId, String clientId) {
-        if (userId.compareTo(clientId) < 0) {
-            return convertNameToId(userId) + "&" + convertNameToId(clientId);
+    public static String getRoomId(String userId, String clientId) {
+        String firstElement;
+        String lastElement;
+        if (userId.toLowerCase().compareTo(clientId.toLowerCase()) > 0) {
+            firstElement = clientId.toLowerCase();
+            lastElement = userId.toLowerCase();
         } else {
-            return convertNameToId(clientId) + "&" + convertNameToId(userId);
+            firstElement = userId.toLowerCase();
+            lastElement = clientId.toLowerCase();
         }
+        return convertToMD5(firstElement.concat("_").concat(lastElement));
+    }
+
+    private static String convertToMD5(String content) {
+        byte[] hash;
+        try {
+            hash = MessageDigest.getInstance("MD5").digest(content.getBytes("UTF-8"));
+        } catch (NoSuchAlgorithmException e) {
+            throw new RuntimeException("NoSuchAlgorithmException", e);
+        } catch (UnsupportedEncodingException e) {
+            throw new RuntimeException("UnsupportedEncodingException", e);
+        }
+
+        StringBuilder hex = new StringBuilder(hash.length * 2);
+        for (byte b : hash) {
+            if ((b & 0xFF) < 0x10) {
+                hex.append("0");
+            }
+            hex.append(Integer.toHexString(b & 0xFF));
+        }
+        return hex.toString();
     }
 
     static String getDeviceId(Activity activity) {
