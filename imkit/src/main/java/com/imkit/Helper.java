@@ -9,8 +9,6 @@ import android.os.Build;
 import android.telephony.TelephonyManager;
 import android.text.TextUtils;
 
-import androidx.core.app.ActivityCompat;
-
 import com.imkit.sdk.ApiResponse;
 import com.imkit.sdk.IMKit;
 import com.imkit.sdk.IMRestCallback;
@@ -31,6 +29,7 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.UUID;
 
+import androidx.core.app.ActivityCompat;
 import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -148,7 +147,7 @@ class Helper {
         room.setName(roomName);
         room.setCover("");
         room.setDescription("Demo room " + roomName);
-        IMKit.instance().createAndJoinRoom(room, inviteeId, false, new IMRestCallback<Room>() {
+        IMKit.instance().createAndJoinRoom(room, inviteeId, false, IMKIT.GROUP_INVITATION_REQUIRED, new IMRestCallback<Room>() {
             @Override
             public void onResult(Room room) {
                 callback.success(room);

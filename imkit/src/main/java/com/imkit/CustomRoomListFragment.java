@@ -9,8 +9,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import androidx.appcompat.app.AlertDialog;
-
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.imkit.sdk.ApiResponse;
 import com.imkit.sdk.IMKit;
@@ -22,6 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
+import androidx.appcompat.app.AlertDialog;
 import retrofit2.Call;
 
 public class CustomRoomListFragment extends com.imkit.widget.fragment.RoomListFragment implements IRoomListFragment {
@@ -128,7 +127,7 @@ public class CustomRoomListFragment extends com.imkit.widget.fragment.RoomListFr
         String[] invitees = inviteeStr.split(",");
         if (invitees.length <= 1) {
             // Create and join a pair chat room room with one member
-            IMKit.instance().createAndJoinRoom(room, inviteeStr, false, new IMRestCallback<Room>() {
+            IMKit.instance().createAndJoinRoom(room, inviteeStr, false, IMKIT.GROUP_INVITATION_REQUIRED, new IMRestCallback<Room>() {
                 @Override
                 public void onResult(Room result) {
                     loadRooms();
@@ -149,7 +148,7 @@ public class CustomRoomListFragment extends com.imkit.widget.fragment.RoomListFr
                     inviteesList.add(invitee);
                 }
             }
-            IMKit.instance().createAndJoinRoom(room, inviteesList, false, new IMRestCallback<Room>() {
+            IMKit.instance().createAndJoinRoom(room, inviteesList, false, IMKIT.GROUP_INVITATION_REQUIRED, new IMRestCallback<Room>() {
                 @Override
                 public void onResult(Room result) {
                     loadRooms();

@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="horizontal" android:layout_width="match_parent"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="10dp"
-    android:background="@color/gray_10">
+    android:background="@color/gray_10"
+    android:orientation="horizontal"
+    android:padding="10dp">
 
     <com.imkit.widget.CircleImageView
         android:id="@+id/im_chat_reply_avatar"
@@ -11,35 +12,44 @@
         android:layout_height="30dp"
         android:layout_gravity="center_vertical"
         android:layout_marginRight="10dp"
-        android:src="@color/colorPrimary"/>
+        android:src="@color/colorPrimary" />
 
     <LinearLayout
         android:layout_width="0dp"
-        android:layout_weight="1"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
+        android:layout_weight="1"
         android:orientation="vertical">
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/im_chat_reply_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="@dimen/text_small"
             android:lines="1"
+            android:text="name"
             android:textColor="@color/gray_80"
-            android:text="name"/>
+            android:textSize="@dimen/text_small" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/im_chat_reply_message"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="@dimen/text_medium"
-            android:lines="1"
             android:ellipsize="end"
+            android:lines="1"
+            android:text="message"
             android:textColor="@color/gray_60"
-            android:text="message"/>
-
+            android:textSize="@dimen/text_medium" />
     </LinearLayout>
+
+    <Space
+        android:layout_width="10dp"
+        android:layout_height="match_parent" />
+
+    <ImageView
+        android:id="@+id/im_chat_reply_image"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:visibility="gone" />
 
     <Space
         android:layout_width="10dp"
@@ -49,7 +59,7 @@
         android:id="@+id/im_chat_reply_cancel"
         android:layout_width="20dp"
         android:layout_height="20dp"
-        android:src="@drawable/ic_close"
-        android:layout_gravity="top|right"/>
+        android:layout_gravity="top|right"
+        android:src="@drawable/ic_close" />
 
 </LinearLayout>

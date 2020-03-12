@@ -12,10 +12,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import androidx.appcompat.app.AlertDialog;
-import androidx.core.content.ContextCompat;
-import androidx.fragment.app.FragmentManager;
-
 import com.imkit.customview.JoinRoomMessageView;
 import com.imkit.customview.LeaveRoomMessageView;
 import com.imkit.customview.RoomView;
@@ -24,7 +20,6 @@ import com.imkit.sdk.IMKit;
 import com.imkit.sdk.IMRestCallback;
 import com.imkit.sdk.model.Badge;
 import com.imkit.sdk.model.Client;
-import com.imkit.sdk.model.ListResult;
 import com.imkit.sdk.model.Room;
 import com.imkit.widget.IMMessageViewHolder;
 import com.imkit.widget.IMWidgetPreferences;
@@ -33,12 +28,18 @@ import com.imkit.widget.utils.Utils;
 
 import java.util.ArrayList;
 
+import androidx.appcompat.app.AlertDialog;
+import androidx.core.content.ContextCompat;
+import androidx.fragment.app.FragmentManager;
 import retrofit2.Call;
 import retrofit2.Response;
 
 public class IMKIT {
 
     private static String currentActiveRoomID = "";
+
+    // Experimental feature
+    public static final boolean GROUP_INVITATION_REQUIRED = false;
 
     public static void init(Context context, String url, String clientKey, String bucketName, String providerAuthority) {
         IMKit.setDebugLog(false);
@@ -104,8 +105,8 @@ public class IMKIT {
 //        IMKit.instance().setHoldToRecordVoice(true);
         IMKit.instance().setTimeout(120000);
 
-        IMKit.instance().setChatRoomType(IMKit.ChatRoomType.Gamania);
-        IMKit.instance().setRoomInfoType(IMKit.RoomInfoType.Gamania);
+        IMKit.instance().setChatRoomType(IMKit.ChatRoomType.TYPE_2);
+        IMKit.instance().setRoomInfoType(IMKit.RoomInfoType.TYPE_2);
         IMKit.instance().setLocationFullMap(true);
 
         IMWidgetPreferences.getInstance().setShowTyping(true);
@@ -259,29 +260,17 @@ public class IMKIT {
     }
 
     public static void showRoomInfo(final Activity activity, final String roomId, final String title, final int requestCode, final IIMKIT.RoomInfo callback) {
-        IMKit.instance().getRooms(new IMRestCallback<ListResult<Room>>() {
-            @Override
-            public void onResult(ListResult<Room> roomListResult) {
-                boolean isFound = false;
-                for (Room room : roomListResult.getData()) {
-                    if (room.getId().equals(roomId)) {
-                        isFound = true;
-                        break;
-                    }
-                }
+        Room room = IMKit.instance().getRoom(roomId);
+        if (room == null) {
+            callback.failed("Room Id not found");
+        } else {
+            callback.success();
 
-                if (isFound) {
-                    callback.success();
-
-                    Intent intent = new Intent(activity, RoomInfoActivity.class);
-                    intent.putExtra("roomId", roomId);
-                    intent.putExtra("title", title);
-                    activity.startActivityForResult(intent, requestCode);
-                } else {
-                    callback.failed("Room Id not found");
-                }
-            }
-        });
+            Intent intent = new Intent(activity, RoomInfoActivity.class);
+            intent.putExtra("roomId", roomId);
+            intent.putExtra("title", title);
+            activity.startActivityForResult(intent, requestCode);
+        }
     }
 
     public static void login(String accessToken, String userDisplayName, String userAvatarUrl, String userDescription, final IIMKIT.Login callback) {
@@ -407,8 +396,7 @@ public class IMKIT {
         }
 
         Room room = new Room();
-//        room.setId(Helper.getRoomId(userIds, IMKit.instance().currentClient().getId()));
-        IMKit.instance().createAndJoinRoom(room, userIds, true, new IMRestCallback<Room>() {
+        IMKit.instance().createAndJoinRoom(room, userIds, true, GROUP_INVITATION_REQUIRED, new IMRestCallback<Room>() {
             @Override
             public void onResult(Room room) {
                 callback.success(room.getId(), Utils.getDisplayRoomTitle(context, room));
@@ -424,8 +412,9 @@ public class IMKIT {
         }
 
         Room room = new Room();
-        room.setId(Helper.getRoomId(userId, IMKit.instance().currentClient().getId()));
-        IMKit.instance().createAndJoinRoom(room, userId, false, new IMRestCallback<Room>() {
+        String roomId = IMKit.instance().getDirectChatRoomId(userId);
+        room.setId(roomId);
+        IMKit.instance().createAndJoinRoom(room, userId, false, false, new IMRestCallback<Room>() {
             @Override
             public void onResult(Room room) {
                 callback.success(room.getId(), Utils.getDisplayRoomTitle(context, room));
