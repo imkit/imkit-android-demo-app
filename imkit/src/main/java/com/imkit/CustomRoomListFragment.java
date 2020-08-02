@@ -1,6 +1,11 @@
 package com.imkit;
 
+import android.app.Activity;
 import android.content.DialogInterface;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -21,6 +26,7 @@ import java.util.List;
 import java.util.Locale;
 
 import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
 import retrofit2.Call;
 
 public class CustomRoomListFragment extends com.imkit.widget.fragment.RoomListFragment implements IRoomListFragment {
@@ -69,6 +75,22 @@ public class CustomRoomListFragment extends com.imkit.widget.fragment.RoomListFr
     public void onStart() {
         super.onStart();
         setTitle(getString(com.imkit.widget.R.string.app_name));
+
+        if (IMKIT.ENABLE_ROOMLIST_DISPLAY_HOME) {
+            Activity activity = requireActivity();
+            if (activity instanceof AppCompatActivity) {
+                AppCompatActivity appCompatActivity = (AppCompatActivity) activity;
+                if (appCompatActivity.getSupportActionBar() != null) {
+                    appCompatActivity.getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+                    Drawable resImg = requireContext().getResources().getDrawable(R.drawable.ic_nav_back);
+                    resImg.setColorFilter(Color.parseColor(IMKIT.TOOLBAR_HOME_COLOR), PorterDuff.Mode.SRC_ATOP);
+                    appCompatActivity.getSupportActionBar().setHomeAsUpIndicator(resImg);
+
+                    appCompatActivity.getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor(IMKIT.TOOLBAR_BACKGROUND_COLOR)));
+                }
+            }
+        }
     }
 
     @Override

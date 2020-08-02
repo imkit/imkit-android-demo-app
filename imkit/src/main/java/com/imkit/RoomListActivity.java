@@ -6,12 +6,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import com.imkit.sdk.IMKit;
 import com.imkit.sdk.model.Room;
 import com.imkit.widget.fragment.RoomListFragment;
 import com.imkit.widget.utils.Utils;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 public class RoomListActivity extends AppCompatActivity {
 
@@ -63,5 +63,11 @@ public class RoomListActivity extends AppCompatActivity {
         IMKit.instance().connect();
 
         IMKIT.getBadge(null);
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return super.onSupportNavigateUp();
     }
 }

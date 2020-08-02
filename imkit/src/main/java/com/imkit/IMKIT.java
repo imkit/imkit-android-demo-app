@@ -41,6 +41,10 @@ public class IMKIT {
     // Experimental feature
     public static final boolean GROUP_INVITATION_REQUIRED = false;
 
+    public static final boolean ENABLE_ROOMLIST_DISPLAY_HOME = false;
+    public static final String TOOLBAR_BACKGROUND_COLOR = "#0088D2";
+    public static final String TOOLBAR_HOME_COLOR = "#FFFFFF";
+
     public static void init(Context context, String url, String clientKey, String bucketName, String providerAuthority) {
         IMKit.setDebugLog(false);
 
