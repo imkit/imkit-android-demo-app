@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.imkit.widget.daimajia.swipe.SwipeLayout
+    android:id="@+id/swipeLayout"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:id="@+id/viewSwipeItem"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/viewPin"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:background="@color/colorPinBG"
+            android:minWidth="96dp"
+            android:orientation="vertical">
+
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_weight="1"/>
+
+            <ImageView
+                android:id="@+id/imgPin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_pin"/>
+
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_weight="1"/>
+
+            <TextView
+                android:id="@+id/txtPin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/im_room_list_pin"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="@color/colorPinText"/>
+
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_weight="1"/>
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- Room list item view -->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/im_clickable_item_bg"
+        android:minHeight="90dp"
+        android:paddingRight="@dimen/im_room_horizontal_padding">
+
+        <FrameLayout
+            android:id="@+id/im_avatar_frame"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginLeft="@dimen/im_room_horizontal_padding"
+            android:layout_marginTop="@dimen/im_room_vertical_padding"
+            android:layout_marginBottom="@dimen/im_room_vertical_padding"
+            android:layout_centerVertical="true">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/im_avatar_placeholder"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/im_avatar_placeholder"
+                android:gravity="center"
+                android:textAllCaps="true"
+                android:textColor="@color/gray_80"
+                android:textSize="@dimen/text_xlarge"/>
+
+            <com.imkit.widget.MultiImageView
+                android:id="@+id/im_avatar"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"/>
+
+            <ImageView
+                android:id="@+id/imgPinStatus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end|bottom"
+                android:src="@drawable/ic_pinned"/>
+        </FrameLayout>
+
+        <LinearLayout
+            android:id="@+id/viewMiddle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:minHeight="90dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginStart="8dp"
+            android:paddingTop="@dimen/im_room_vertical_padding"
+            android:paddingBottom="@dimen/im_room_vertical_padding"
+            android:layout_toEndOf="@+id/im_avatar_frame"
+            android:layout_toLeftOf="@+id/viewEnd"
+            android:layout_toRightOf="@+id/im_avatar_frame"
+            android:layout_toStartOf="@+id/viewEnd"
+            android:orientation="vertical">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/im_room_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/text_large"
+                android:textStyle="bold"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/im_room_subtitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:maxLines="2"
+                android:textSize="@dimen/text_small"/>
+
+            <LinearLayout
+                android:id="@+id/im_room_tags"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/im_room_last_message"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:maxLines="2"
+                android:textSize="@dimen/text_small"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/viewEnd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginLeft="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="@dimen/im_room_vertical_padding"
+            android:layout_marginBottom="@dimen/im_room_vertical_padding"
+            android:orientation="vertical">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/im_room_last_message_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/text_small"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/im_room_badge"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/im_badge_bg"
+                android:gravity="center"
+                android:minHeight="23dp"
+                android:minWidth="23dp"
+                android:textColor="@color/im_badge"
+                android:textSize="@dimen/text_small"/>
+        </LinearLayout>
+
+        <View
+            android:id="@+id/im_room_left_divider"
+            android:layout_width="7dp"
+            android:layout_height="wrap_content"
+            android:minHeight="90dp"
+            android:layout_alignTop="@id/viewMiddle"
+            android:layout_alignBottom="@id/viewMiddle"
+            android:background="@color/gray_60"
+            android:visibility="gone"/>
+
+    </RelativeLayout>
+
+</com.imkit.widget.daimajia.swipe.SwipeLayout>
