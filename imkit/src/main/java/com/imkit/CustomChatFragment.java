@@ -9,6 +9,7 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.widget.Toast;
 
+import com.imkit.sdk.model.Message;
 import com.imkit.widget.fragment.IChatFragment;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -61,6 +62,7 @@ public class CustomChatFragment extends com.imkit.widget.fragment.ChatFragment i
                 }
             }
         }
+
     }
 
     @Override
@@ -75,5 +77,9 @@ public class CustomChatFragment extends com.imkit.widget.fragment.ChatFragment i
     public void showRoomInfo() {
         Toast.makeText(requireContext(), "showRoomInfo", Toast.LENGTH_SHORT).show();
         super.showRoomInfo();
+    }
+
+    public void onClickAvatar(Message message) {
+        Toast.makeText(requireContext(), "onClickAvatar, sender:" + message.getSender().getNickname(), Toast.LENGTH_SHORT).show();
     }
 }
