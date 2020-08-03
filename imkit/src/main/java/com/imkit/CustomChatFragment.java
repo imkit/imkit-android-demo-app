@@ -7,8 +7,12 @@ import android.graphics.PorterDuff;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.imkit.sdk.IMKit;
 import com.imkit.sdk.model.Message;
 import com.imkit.widget.fragment.IChatFragment;
 
@@ -63,6 +67,19 @@ public class CustomChatFragment extends com.imkit.widget.fragment.ChatFragment i
             }
         }
 
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater layoutInflater, ViewGroup viewGroup, Bundle bundle) {
+        View rootView = super.onCreateView(layoutInflater, viewGroup, bundle);
+
+        if (IMKit.instance().getChatRoomType().equals(IMKit.ChatRoomType.TYPE_2)) {
+            View viewChatToolbar = rootView.findViewById(com.imkit.widget.R.id.im_chat_toolbar_view);
+            // Hide Type 2 more function if need
+//            viewChatToolbar.findViewById(com.imkit.widget.R.id.im_more).setVisibility(View.GONE);
+        }
+
+        return rootView;
     }
 
     @Override
