@@ -7,7 +7,7 @@ import android.graphics.PorterDuff;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.imkit.widget.fragment.IChatFragment;
 
@@ -72,16 +72,8 @@ public class CustomChatFragment extends com.imkit.widget.fragment.ChatFragment i
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == com.imkit.widget.R.id.im_chatroom_info) {
-            onInfoClicked();
-            return true;
-        }
-
-        return false;
-    }
-
-    private void onInfoClicked() {
-        showRoomInfo();
+    public void showRoomInfo() {
+        Toast.makeText(requireContext(), "showRoomInfo", Toast.LENGTH_SHORT).show();
+        super.showRoomInfo();
     }
 }
