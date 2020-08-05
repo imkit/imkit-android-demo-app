@@ -77,6 +77,10 @@ public class CustomChatFragment extends com.imkit.widget.fragment.ChatFragment i
             View viewChatToolbar = rootView.findViewById(com.imkit.widget.R.id.im_chat_toolbar_view);
             // Hide Type 2 more function if need
 //            viewChatToolbar.findViewById(com.imkit.widget.R.id.im_more).setVisibility(View.GONE);
+
+            // Change chatToolbar icon if need
+//            ((AppCompatImageView) viewChatToolbar.findViewById(com.imkit.widget.R.id.im_pick_photo_from_gallery)).setImageResource(R.drawable.ic_g_attached);
+//            ((AppCompatImageView) viewChatToolbar.findViewById(com.imkit.widget.R.id.im_pick_photo_from_camera)).setImageResource(R.drawable.ic_g_attached);
         }
 
         return rootView;
