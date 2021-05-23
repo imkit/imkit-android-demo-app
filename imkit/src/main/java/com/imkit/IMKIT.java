@@ -104,8 +104,8 @@ public class IMKIT {
 //        IMKit.instance().setHoldToRecordVoice(true);
         IMKit.instance().setTimeout(120000);
 
-        IMKit.instance().setChatRoomType(IMKit.ChatRoomType.Gamania);
-        IMKit.instance().setRoomInfoType(IMKit.RoomInfoType.Gamania);
+        IMKit.instance().setChatRoomType(IMKit.ChatRoomType.Default);
+        IMKit.instance().setRoomInfoType(IMKit.RoomInfoType.Default);
         IMKit.instance().setLocationFullMap(true);
 
         IMWidgetPreferences.getInstance().setShowTyping(true);
@@ -232,6 +232,11 @@ public class IMKIT {
                     });
                     return view;
                 }
+
+                @Override
+                public void onRoomListSearchClick() {
+
+                }
             });
             fragmentManager.beginTransaction().add(fragmentContainerId, fragment, fragment.getClass().getSimpleName()).commit();
         } else {
@@ -259,7 +264,7 @@ public class IMKIT {
     }
 
     public static void showRoomInfo(final Activity activity, final String roomId, final String title, final int requestCode, final IIMKIT.RoomInfo callback) {
-        IMKit.instance().getRooms(new IMRestCallback<ListResult<Room>>() {
+        IMKit.instance().getRooms(0, 100, false, new IMRestCallback<ListResult<Room>>() {
             @Override
             public void onResult(ListResult<Room> roomListResult) {
                 boolean isFound = false;
@@ -408,7 +413,7 @@ public class IMKIT {
 
         Room room = new Room();
 //        room.setId(Helper.getRoomId(userIds, IMKit.instance().currentClient().getId()));
-        IMKit.instance().createAndJoinRoom(room, userIds, true, new IMRestCallback<Room>() {
+        IMKit.instance().createAndJoinRoom(room, userIds, true, false, new IMRestCallback<Room>() {
             @Override
             public void onResult(Room room) {
                 callback.success(room.getId(), Utils.getDisplayRoomTitle(context, room));
@@ -425,7 +430,7 @@ public class IMKIT {
 
         Room room = new Room();
         room.setId(Helper.getRoomId(userId, IMKit.instance().currentClient().getId()));
-        IMKit.instance().createAndJoinRoom(room, userId, false, new IMRestCallback<Room>() {
+        IMKit.instance().createAndJoinRoom(room, userId, false, false, new IMRestCallback<Room>() {
             @Override
             public void onResult(Room room) {
                 callback.success(room.getId(), Utils.getDisplayRoomTitle(context, room));

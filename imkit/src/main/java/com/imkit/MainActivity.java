@@ -174,6 +174,11 @@ public class MainActivity extends AppCompatActivity {
                 iconView.setColorFilter(ContextCompat.getColor(MainActivity.this, com.imkit.widget.R.color.colorPrimary));
                 return view;
             }
+
+            @Override
+            public void onRoomListSearchClick() {
+
+            }
         });
         return roomListFragment;
     }

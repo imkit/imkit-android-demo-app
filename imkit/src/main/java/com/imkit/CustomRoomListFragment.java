@@ -55,7 +55,8 @@ public class CustomRoomListFragment extends com.imkit.widget.fragment.RoomListFr
         return rootView;
     }
 
-    private void bindViews(View rootView) {
+    protected void bindViews(View rootView) {
+        super.bindViews(rootView);
         createRoomFab = (FloatingActionButton) rootView.findViewById(R.id.im_roomlist_create_room_fab);
         createRoomFab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -128,7 +129,7 @@ public class CustomRoomListFragment extends com.imkit.widget.fragment.RoomListFr
         String[] invitees = inviteeStr.split(",");
         if (invitees.length <= 1) {
             // Create and join a pair chat room room with one member
-            IMKit.instance().createAndJoinRoom(room, inviteeStr, false, new IMRestCallback<Room>() {
+            IMKit.instance().createAndJoinRoom(room, inviteeStr, false, false, new IMRestCallback<Room>() {
                 @Override
                 public void onResult(Room result) {
                     loadRooms();
@@ -149,7 +150,7 @@ public class CustomRoomListFragment extends com.imkit.widget.fragment.RoomListFr
                     inviteesList.add(invitee);
                 }
             }
-            IMKit.instance().createAndJoinRoom(room, inviteesList, false, new IMRestCallback<Room>() {
+            IMKit.instance().createAndJoinRoom(room, inviteesList, false, false, new IMRestCallback<Room>() {
                 @Override
                 public void onResult(Room result) {
                     loadRooms();

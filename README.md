@@ -30,11 +30,19 @@ Add to your application modules' build.gradle
 ```
 apply plugin: 'com.android.application'
 apply plugin: 'realm-android'
+apply plugin: 'maven'
 
 repositories {
     maven {
-        // Change to official release repository
-        url  "http://dl.bintray.com/brianfang/IMKit-SDK-V3"
+        name = "IMKit"
+        url "https://codebase.funtek.io/api/v4/projects/80/packages/maven"
+        credentials(HttpHeaderCredentials) {
+            name = "Private-Token"
+            value = "QeY8AazVwMz95zfb7aEQ"
+        }
+        authentication {
+            header(HttpHeaderAuthentication)
+        }
     }
 }
 

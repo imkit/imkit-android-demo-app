@@ -55,6 +55,11 @@ public class LeaveRoomMessageView extends IMMessageViewHolder {
     }
 
     @Override
+    public void setKeyword(String s) {
+
+    }
+
+    @Override
     public void setNumRead(int count) {
 
     }
