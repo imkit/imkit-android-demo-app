@@ -49,6 +49,11 @@ public class RoomListActivity extends AppCompatActivity {
                 });
                 return view;
             }
+
+            @Override
+            public void onRoomListSearchClick() {
+
+            }
         });
         getSupportFragmentManager().beginTransaction().add(R.id.container, fragment, fragment.getClass().getSimpleName()).commit();
     }

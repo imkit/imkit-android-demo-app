@@ -1,6 +1,7 @@
 package com.imkit.customview;
 
 import android.content.Context;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -49,10 +50,8 @@ public class JoinRoomMessageView extends IMMessageViewHolder {
 
     @Override
     public void setMessage(Message message) {
-        String name = "";
-        if (message.getMember() != null) {
-            name = message.getMember().getNickname();
-        } else if (message.getSender() != null) {
+        String name = message.getMessage();
+        if (TextUtils.isEmpty(name)) {
             name = message.getSender().getNickname();
         }
 

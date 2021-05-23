@@ -1,79 +1,27 @@
-# Setup bintray
-1. Edit local.properties, add
-```
-bintray.user=<Your Bintray User Account>
-bintray.apikey=<Your Bintray API Key>
-```
+# IMKit iOS Framework v3.0
 
-2. Modify Bintray Repo Description in bintray-upload.gradle
-### Sample
-```
-bintray {
-    ...
-    pkg {
-        repo = "IMKit-SDK-V2-Test"
-        // it is the name that appears in bintray when logged
-        name = project.PUBLISH_ARTIFACT_ID
-        userOrg = user
-        websiteUrl = siteUrl
-        vcsUrl = gitUrl
-        licenses = [""]
-        publish = false
-        version {
-            name = project.PUBLISH_VERSION
-            desc = 'IMKit-SDK-V2'
-            released  = new Date()
-            vcsTag = project.PUBLISH_VERSION
-            gpg {
-                sign = false
-            }
-        }
-    }
-    publications = ['Production']
-}
-```
+# About IMKit
+IMKit is a live chat platform solution, more detail please visit: https://imkit.io
 
-# Publish AAR Library
-0. Clean
-./gradlew app:clean
-./gradlew sdk:clean
-./gradlew widget:clean
+## Features
+- [x] Room list / Chat room
+- [x] Support text, sticker, image, video, audio, location message
+- [x] Support reply message
+- [x] URL detection and preview
+- [x] Typing indicator
 
-1. Archive AAR
-```
-./gradlew sdk:assembleRelease
-./gradlew widget:assembleRelease
-```
-
-2. Generate POM
-```
-./gradlew sdk:generatePomFileForProductionPublication
-./gradlew widget:generatePomFileForProductionPublication
-```
-
-2.1 Check POM files correctly generated, could be found at
-```
-sdk/build/publications/Production/pom-default.xml
-widget/build/publications/Production/pom-default.xml
-```
-
-3. Upload to Bintray
-```
-./gradlew sdk:bintrayUpload
-./gradlew widget:bintrayUpload
-```
-
-4. Goto Bintray Web Console and clicks on Publish.
-
+## Requirements
+- Android SDK Version 16+
+- Android Studio
+- Gradle 3.1.4+
 
 ## Gradle Settings
-
 Add to your project root build.gradle
 ```
 buildscript {
   dependencies {
-    classpath "io.realm:realm-gradle-plugin:3.0.0"
-    classpath 'com.google.gms:google-services:3.0.0'
+    classpath "io.realm:realm-gradle-plugin:5.7.1"
+    classpath 'com.google.gms:google-services:3.2.0'
   }
 }
 ```
@@ -82,112 +30,89 @@ Add to your application modules' build.gradle
 ```
 apply plugin: 'com.android.application'
 apply plugin: 'realm-android'
+apply plugin: 'maven'
 
 repositories {
     maven {
-        // Change to official release repository
-        url  "http://dl.bintray.com/shine-chen/IMKit-SDK-V2-Test"
+        name = "IMKit"
+        url "https://codebase.funtek.io/api/v4/projects/80/packages/maven"
+        credentials(HttpHeaderCredentials) {
+            name = "Private-Token"
+            value = "QeY8AazVwMz95zfb7aEQ"
+        }
+        authentication {
+            header(HttpHeaderAuthentication)
+        }
     }
 }
 
 dependencies {
   ...
 
-  compile ('com.imkit:imkit-sdk-v2:2.0.67@aar') {
-    transitive=true
-  }
-  compile ('com.imkit:imkit-widget-v2:2.0.67@aar')
-  compile 'com.android.support:appcompat-v7:27.1.0'
-  compile 'com.android.support:recyclerview-v7:27.1.0'
-  compile 'com.android.support:support-v4:27.1.0'
-  compile 'com.github.bumptech.glide:glide:3.7.0'
-  compile 'com.github.bumptech.glide:okhttp3-integration:1.4.0@aar'
-  compile 'com.google.android.exoplayer:exoplayer:r2.3.1'
-  compile 'com.kbeanie:multipicker:1.1.31@aar'
-  compile 'com.google.firebase:firebase-messaging:12.0.0'
+  implementation project(':imkit')
+  implementation 'com.android.support:appcompat-v7:28.0.0'
+  implementation 'com.android.support:recyclerview-v7:28.0.0'
+  implementation 'com.android.support:support-v4:28.0.0'
+  implementation 'com.github.bumptech.glide:glide:4.6.1'
+  implementation 'com.github.bumptech.glide:okhttp3-integration:4.6.1@aar'
+  annotationProcessor 'com.github.bumptech.glide:compiler:4.6.1'
+  implementation 'com.google.android.exoplayer:exoplayer:r2.4.0'
+  implementation 'com.google.firebase:firebase-messaging:12.0.0'
+  implementation 'org.jsoup:jsoup:1.11.3'
+  implementation "com.tonyodev.fetch2:fetch2:2.2.0-RC16"
 
   ...
 }
+
+apply plugin: 'com.google.gms.google-services'
 ```
 
-## Initialization
-Add your own Application Class extends Android Application
+## Init SDK
+Call `IMKIT.init(getApplicationContext())` at app module for init IMKit SDK
+
+## Usage
+### IMKIT
 ```
-public class MyApplication extends Application {
+IMKIT.init(Context context)
 
-    private static final String TAG = "MyApplication";
+// Login IMKit with name
+IMKIT.login(Activity activity, String name, final IIMKIT.Login callback)
 
-    public void onCreate() {
-        super.onCreate();
+// Login IMKit with accessToken and userInfomation
+IMKIT.login(String accessToken, String userDisplayName, String userAvatarUrl, String userDescription, final IIMKIT.Login callback)
 
-        IMKit.instance()
-                .setUrl(YOUR_IMKIT_SERVER_URL )
-                .setClientKey(YOUR_CLIENT_KEY)
-                .setToken(YOUR_CLIENT_TOKEN) // The client token could be set later when your obtain one
-                .setBucketName(UPLOAD_FILE_BUCKET_NAME) // S3 Bucket Name
-                .init(this);
+// Update user's accessToken
+IMKIT.refreshToken(String accessToken)
 
-        String refreshedToken = FirebaseInstanceId.getInstance().getToken();
-        Log.d(TAG, "Refreshed token: " + refreshedToken);
-        IMKit.instance().subscribe(refreshedToken, null);
+// Logut IMKit
+IMKIT.logout(IIMKIT.Logout callback)
 
-    }
-}
+// Uptaer userInformation
+IMKIT.updateUser(String userDisplayName, String userAvatarUrl, String userDescription, final IIMKIT.UpdateUser callback) 
+
+// Intent to roomList
+IMKIT.showRoomList(final Activity activity, final FragmentManager fragmentManager, final int fragmentContainerId, int requestCode)
+
+// Intent to chatRoom
+IMKIT.showChat(Activity activity, String roomId, String title, int requestCode)
+
+// Intent to roomInfo
+IMKIT.showRoomInfo(final Activity activity, final String roomId, final String title, final int requestCode, final IIMKIT.RoomInfo callback)
+
+// Private chat
+IMKIT.createRoomWithUsers(Context context, ArrayList<String> userIds, final IIMKIT.CreateRoom callback)
+
+// Group chat
+IMKIT.createRoomWithUser(Context context, String userId, final IIMKIT.CreateRoom callback)
+
+// Get badge information
+IMKIT.getBadge(final IIMKIT.Badge callback)
 ```
 
-## Present RoomList and ChatRoom UI
-Snippet from MainActivity.java
-
-```java
-public class MainActivity extends AppCompatActivity {
-
-    private static final String TAG = "MainActivity";
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-
-        ...
-
-        pushFragment(instantiateRoomListFragment(), false);
-    }
-
-    public RoomListFragment instantiateRoomListFragment() {
-        return RoomListFragment.newInstance().setListener(new RoomListFragment.RoomListFragmentListener() {
-            @Override
-            public void onRoomSelect(Room room) {
-                pushFragment(instantiateChatFragment(room));
-            }
-        });
-    }
-
-    public ChatFragment instantiateChatFragment(final Room room) {
-        return ChatFragment.newInstance(room.getId(), room.getName()).setListener(new ChatFragment.ChatFragmentListener() {
-            @Override
-            public void onShowRoomInfo() {
-                pushFragment(instantiateRoomInfoFragment(room));
-            }
-        });
-    }
-
-    public RoomInfoFragment instantiateRoomInfoFragment(Room room) {
-        return RoomInfoFragment.newInstance(room.getId(), room.getName());
-    }
-
-    @Override
-    public void onStart() {
-        super.onStart();
-
-        IMKit.instance().connect();
-    }
-
-    @Override
-    public void onStop() {
-        super.onStop();
-
-        IMKit.instance().disconnect();
-    }
-    ...
-}
+### Customize UI
+user can customize roomlist / chatroom / roomInfo at imkit module
+```
+- roomlist : com.imkit.CustomRoomListFragment
+- chatroom : com.imkit.CustomChatFragment
+- roomInfo : com.imkit.CustomRoomInfoFragment
 ```

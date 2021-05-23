@@ -237,6 +237,11 @@ public class IMKIT {
                     });
                     return view;
                 }
+
+                @Override
+                public void onRoomListSearchClick() {
+
+                }
             });
             fragmentManager.beginTransaction().add(fragmentContainerId, fragment, fragment.getClass().getSimpleName()).commit();
         } else {
