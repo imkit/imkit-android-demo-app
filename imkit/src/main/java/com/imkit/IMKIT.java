@@ -109,7 +109,7 @@ public class IMKIT {
 //        IMKit.instance().setHoldToRecordVoice(true);
         IMKit.instance().setTimeout(120000);
 
-        IMKit.instance().setChatRoomType(IMKit.ChatRoomType.TYPE_2);
+        IMKit.instance().setChatRoomType(IMKit.ChatRoomType.TYPE_3);
         IMKit.instance().setRoomInfoType(IMKit.RoomInfoType.TYPE_2);
         IMKit.instance().setLocationFullMap(true);
 
