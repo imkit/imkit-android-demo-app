@@ -98,7 +98,9 @@ public class IMKIT {
         // Custom item decorations
 //        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(context, DividerItemDecoration.VERTICAL);
 //        dividerItemDecoration.setDrawable(ContextCompat.getDrawable(context, R.drawable.im_item_decoration));
+        // Set room list item decoration
 //        IMWidgetPreferences.getInstance().setRoomItemDecoration(dividerItemDecoration);
+        // Set member list item decoration
 //        IMWidgetPreferences.getInstance().setRoomMemberItemDecoration(dividerItemDecoration);
 
         // Custom Message View
@@ -107,6 +109,7 @@ public class IMKIT {
 
         IMKit.instance().setSSLTrustAll(true);
 //        IMKit.instance().setHoldToRecordVoice(true);
+        // Chat server connect and API request timeout, in milliseconds.
         IMKit.instance().setTimeout(120000);
 
         IMKit.instance().setChatRoomType(IMKit.ChatRoomType.TYPE_3);
@@ -120,41 +123,41 @@ public class IMKIT {
         IMWidgetPreferences.getInstance().setMultipleForward(true);
     }
 
+    /**
+     * Connect chat server with name, for demo purpose. Not recommend for production usage.
+     * @param activity
+     * @param name
+     * @param callback
+     * @see {@link #login(String, String, String, IIMKIT.Login)} for production implementation
+     */
     public static void login(Activity activity, String name, final IIMKIT.Login callback) {
+        // For demo purpose, you can implement your own unique device ID getter.
         IMKit.instance().setUniqueDeviceId(Helper.getDeviceId(activity));
 
         // Clear cache
         IMKit.instance().clear();
 
-        IIMKIT.Login loginCallback = new IIMKIT.Login() {
+        IMKit.instance().connect(name, new IMRestCallback<Client>() {
             @Override
-            public void success() {
-                IMKit.instance().loadCurrentClient(new IMRestCallback<Client>() {
+            public void onResult(Client client) {
+                IMKit.instance().updateCurrentUserInfo(name /* display nickname */, null /* Avatar URL */, new IMRestCallback<Client>() {
                     @Override
-                    public void onResult(Client result) {
-                        // Connect socket, start receiving real-time messages
-                        IMKit.instance().connect();
+                    public void onResult(Client client) {
                         callback.success();
-//                        pushFragment(instantiateRoomListFragment(), false);
                     }
 
                     @Override
-                    public void onFailure(Call<ApiResponse<Client>> call, Throwable t) {
-                        callback.failed(t.getMessage());
+                    public void onFailure(Call<ApiResponse<Client>> call, Throwable throwable) {
+                        callback.failed(throwable.getMessage());
                     }
                 });
             }
 
             @Override
-            public void failed(String reason) {
-                callback.failed(reason);
+            public void onFailure(Call<ApiResponse<Client>> call, Throwable throwable) {
+                callback.failed(throwable.getMessage());
             }
-        };
-        if (BuildConfig.IMKIT_AUTH_TYPE == 0) {
-            Helper.authWithBindToken(activity, name, Helper.getDeviceId(activity), loginCallback);
-        } else if (BuildConfig.IMKIT_AUTH_TYPE == 1) {
-            Helper.authWithExternalServer(activity, name, loginCallback);
-        }
+        });
 
     }
 
@@ -282,75 +285,38 @@ public class IMKIT {
         }
     }
 
-    public static void login(String accessToken, String userDisplayName, String userAvatarUrl, String userDescription, final IIMKIT.Login callback) {
+    /**
+     * Login with accessToken. Suggested for production usage.
+     * @param accessToken
+     * @param userDisplayName
+     * @param userAvatarUrl
+     * @param callback
+     */
+    public static void login(String accessToken, String userDisplayName, String userAvatarUrl, final IIMKIT.Login callback) {
         // Clear cache
         IMKit.instance().clear();
-
-        IMKit.instance().setToken(accessToken);
-        IMKit.instance().addExtraImageRequestHeader("AccessToken", accessToken);
-
-        Client client = new Client();
-//        client.setId();
-        client.setNickname(userDisplayName);
-        client.setAvatarUrl(userAvatarUrl);
-        client.setDescription(userDescription);
-
-        IMKit.instance().updateMe(client, new IMRestCallback<Client>() {
+        IMKit.instance().connect(null, accessToken, new IMRestCallback<Client>() {
             @Override
             public void onResult(Client client) {
-                Log.i("IMKIT", "updateMe result = " + client);
-                IMKit.instance().connect();
-                callback.success();
-            }
+                IMKit.instance().updateCurrentUserInfo(userDisplayName, userAvatarUrl, new IMRestCallback<Client>() {
+                    @Override
+                    public void onResult(Client client) {
+                        callback.success();
+                    }
 
-            @Override
-            public void onResponse(Call<ApiResponse<Client>> call, Response<ApiResponse<Client>> response) {
-                super.onResponse(call, response);
+                    @Override
+                    public void onFailure(Call<ApiResponse<Client>> call, Throwable throwable) {
+                        callback.failed(throwable.getMessage());
+                    }
+                });
             }
 
             @Override
             public void onFailure(Call<ApiResponse<Client>> call, Throwable throwable) {
-                super.onFailure(call, throwable);
                 callback.failed(throwable.getMessage());
-            }
-
-            @Override
-            public IMRestCallback<Client> next(IMRestCallback<Client> imRestCallback) {
-                return super.next(imRestCallback);
             }
         });
     }
-
-//    public static void login(String accessToken, final IIMKIT.Login callback) {
-//        // Clear cache
-//        IMKit.instance().clear();
-//        IMKit.instance().setToken(accessToken);
-//
-//        Client client = IMKit.instance().currentClient();
-//        IMKit.instance().updateMe(client, new IMRestCallback<Client>() {
-//            @Override
-//            public void onResult(Client client) {
-//                IMKit.instance().connect();
-//                callback.success();
-//            }
-//
-//            @Override
-//            public void onResponse(Call<ApiResponse<Client>> call, Response<ApiResponse<Client>> response) {
-//                super.onResponse(call, response);
-//            }
-//
-//            @Override
-//            public void onFailure(Call<ApiResponse<Client>> call, Throwable throwable) {
-//                super.onFailure(call, throwable);
-//                callback.failed(throwable.getMessage());
-//            }
-//
-//            @Override
-//            public IMRestCallback<Client> next(IMRestCallback<Client> imRestCallback) {
-//                return super.next(imRestCallback);
-//            }
-//        });
-//    }
 
     public static void refreshToken(String accessToken) {
         IMKit.instance().setToken(accessToken);

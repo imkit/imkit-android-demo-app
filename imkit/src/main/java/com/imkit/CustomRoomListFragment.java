@@ -60,7 +60,7 @@ public class CustomRoomListFragment extends com.imkit.widget.fragment.RoomListFr
         return rootView;
     }
 
-    protected void bindViews(View rootView) {
+    public void bindViews(View rootView) {
         super.bindViews(rootView);
         createRoomFab = (FloatingActionButton) rootView.findViewById(R.id.im_roomlist_create_room_fab);
         createRoomFab.setOnClickListener(new View.OnClickListener() {

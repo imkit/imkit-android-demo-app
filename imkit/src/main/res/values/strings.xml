@@ -17,16 +17,21 @@
     <string name="im_room_list_pin">Pin</string>
     <string name="im_room_list_unpin">Unpin</string>
 
-    <string name="im_member_join">%1$s 已加入</string>
-    <string name="im_member_leave">%1$s left room</string>
-    <string name="im_sent_a_photo">%1$s sent a photo</string>
-    <string name="im_sent_a_video">%1$s sent a video</string>
-    <string name="im_sent_a_audio">%1$s sent a audio</string>
-    <string name="im_sent_a_sticker">%1$s sent a sticker</string>
-    <string name="im_sent_a_location">%1$s sent a location</string>
-    <string name="im_member_typing">%1$s is typing...</string>
-    <string name="im_read_count">已讀 %1$d</string>
-    <string name="im_add_members">%1$s 邀請 %2$s 加入聊天室</string>
+    <string name="im_member_join">joined room</string>
+    <string name="im_member_leave">left room</string>
+    <string name="im_sent_a_photo">sent a photo</string>
+    <string name="im_sent_a_video">sent a video</string>
+    <string name="im_sent_a_audio">sent a audio</string>
+    <string name="im_sent_a_sticker">sent a sticker</string>
+    <string name="im_sent_a_location">sent a location</string>
+    <string name="im_sent_a_file">sent a file</string>
+    <string name="im_member_typing">%1$s is typing…</string>
+    <string name="im_read_count">%1$d read</string>
+    <string name="im_is_read">read</string>
+    <string name="im_add_members">%1$s added %2$s to room</string>
+    <string name="im_sent_invitation">%1$s 邀請你加入群組</string>
+    <string name="im_message_recall_a_message"><b>%1$s</b> recalled a message</string>
+    <string name="im_group_cancel_invitations">%1$s取消邀請%2$s</string>
 
     <string name="im_url_description_default_text">Click here to open link</string>
 

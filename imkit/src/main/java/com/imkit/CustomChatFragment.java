@@ -58,7 +58,7 @@ public class CustomChatFragment extends com.imkit.widget.fragment.ChatFragment i
             if (activity instanceof AppCompatActivity) {
                 AppCompatActivity appCompatActivity = (AppCompatActivity) activity;
                 if (appCompatActivity.getSupportActionBar() != null) {
-                    Drawable resImg = requireContext().getResources().getDrawable(R.drawable.ic_nav_back);
+                    Drawable resImg = requireContext().getResources().getDrawable(com.imkit.R.drawable.ic_nav_back);
                     resImg.setColorFilter(Color.parseColor(IMKIT.TOOLBAR_HOME_COLOR), PorterDuff.Mode.SRC_ATOP);
                     appCompatActivity.getSupportActionBar().setHomeAsUpIndicator(resImg);
 
