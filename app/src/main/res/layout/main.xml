@@ -12,11 +12,21 @@
         >
 
         <EditText
+            android:id="@+id/edUserId"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:hint="UID"
+            android:lines="1"
+            android:maxLines="1"/>
+
+        <EditText
             android:id="@+id/edUserName"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:hint="Input username"/>
+            android:hint="Nickname"
+            android:lines="1"
+            android:maxLines="1"/>
 
         <Button
             android:id="@+id/btnLogin"

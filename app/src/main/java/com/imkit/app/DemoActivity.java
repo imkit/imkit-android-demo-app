@@ -13,6 +13,7 @@ import com.imkit.IMKIT;
 
 public class DemoActivity extends AppCompatActivity {
 
+    private EditText edUserId;
     private EditText edUserName;
     private Button btnLogin;
     private Button btnCreateRoom;
@@ -30,6 +31,7 @@ public class DemoActivity extends AppCompatActivity {
 
         this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
 
+        edUserId = findViewById(R.id.edUserId);
         edUserName = findViewById(R.id.edUserName);
         btnLogin = findViewById(R.id.btnLogin);
         btnCreateRoom = findViewById(R.id.btnCreateRoom);
@@ -41,13 +43,14 @@ public class DemoActivity extends AppCompatActivity {
         btnSignOut = findViewById(R.id.btnSignOut);
 
         btnLogin.setOnClickListener(v -> {
-            if (edUserName.getText().toString().isEmpty()) {
-                Toast.makeText(DemoActivity.this, "Input UserName first", Toast.LENGTH_SHORT).show();
+            if (edUserId.getText().toString().isEmpty() || edUserName.getText().toString().isEmpty()) {
+                Toast.makeText(DemoActivity.this, "Input UID and Nicname first", Toast.LENGTH_SHORT).show();
             } else {
-                IMKIT.login(DemoActivity.this, edUserName.getText().toString(), new IIMKIT.Login() {
+                IMKIT.login(DemoActivity.this, edUserId.getText().toString(), edUserName.getText().toString(), new IIMKIT.Login() {
                     @Override
                     public void success() {
                         Toast.makeText(DemoActivity.this, "Login Success", Toast.LENGTH_SHORT).show();
+                        edUserId.setEnabled(false);
                         edUserName.setEnabled(false);
                         btnLogin.setEnabled(false);
                         btnSignOut.setEnabled(true);
@@ -93,6 +96,8 @@ public class DemoActivity extends AppCompatActivity {
 
         btnSignOut.setEnabled(false);
         btnSignOut.setOnClickListener(v -> IMKIT.logout(() -> {
+            edUserId.setText("");
+            edUserId.setEnabled(true);
             edUserName.setText("");
             edUserName.setEnabled(true);
             btnLogin.setEnabled(true);

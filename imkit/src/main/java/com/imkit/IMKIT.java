@@ -126,21 +126,22 @@ public class IMKIT {
     /**
      * Connect chat server with name, for demo purpose. Not recommend for production usage.
      * @param activity
-     * @param name
+     * @param uid   User ID
+     * @param nickname
      * @param callback
      * @see {@link #login(String, String, String, IIMKIT.Login)} for production implementation
      */
-    public static void login(Activity activity, String name, final IIMKIT.Login callback) {
+    public static void login(Activity activity, String uid, String nickname, final IIMKIT.Login callback) {
         // For demo purpose, you can implement your own unique device ID getter.
         IMKit.instance().setUniqueDeviceId(Helper.getDeviceId(activity));
 
         // Clear cache
         IMKit.instance().clear();
 
-        IMKit.instance().connect(name, new IMRestCallback<Client>() {
+        IMKit.instance().connect(uid, new IMRestCallback<Client>() {
             @Override
             public void onResult(Client client) {
-                IMKit.instance().updateCurrentUserInfo(name /* display nickname */, null /* Avatar URL */, new IMRestCallback<Client>() {
+                IMKit.instance().updateCurrentUserInfo(nickname /* display nickname */, null /* Avatar URL */, new IMRestCallback<Client>() {
                     @Override
                     public void onResult(Client client) {
                         callback.success();
