@@ -38,7 +38,7 @@ public class IMKIT {
 
     private static String currentActiveRoomID = "";
 
-    // Experimental feature
+    // Whether requires invitees explicitly accepting invitation to join a group chat.
     public static final boolean GROUP_INVITATION_REQUIRED = false;
 
     public static final boolean ENABLE_ROOMLIST_DISPLAY_HOME = false;
