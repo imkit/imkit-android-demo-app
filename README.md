@@ -1,21 +1,20 @@
-# IMKit iOS Framework v3.0
-
 # About IMKit
-IMKit is a live chat platform solution, more detail please visit: https://imkit.io
+Through IMKIT iOS SDK, you will be able to integrate chat into your app easily and efficiently. Follow the simple integration process below to build the chat with feature-rich experience.
 
-## Features
-- [x] Room list / Chat room
-- [x] Support text, sticker, image, video, audio, location message
-- [x] Support reply message
-- [x] URL detection and preview
-- [x] Typing indicator
 
 ## Requirements
 - Android SDK Version 16+
 - Android Studio
-- Gradle 3.1.4+
+- Gradle 4.2.1+
 
-## Gradle Settings
+
+# Get started
+This tutorial provides you a step-by-step guide to install IMKIT iOS SDK to your new project or an existing project you own with minimum efforts. Please check out the details in the complete guide and documents. You can find solutions to related issues you may face during the installations. Let’s get started.
+
+## Step 1 - Create a Project or install on existed Project
+
+## Step 2 - Install SDK through Gradle
+
 Add to your project root build.gradle
 ```
 buildscript {
@@ -67,7 +66,35 @@ dependencies {
 apply plugin: 'com.google.gms.google-services'
 ```
 
-## Init SDK
+## Step 3 - Initialize IMKIT
+
+Before initializing IMKIT, you need to have two things ready.
+
+1. client key
+2. chat server url    
+
+You can get these private values from our dashboard.
+
+![Dashboard](https://i.imgur.com/Q9J0tqG.png "Dashboard")
+(In order to continue this tutorial, please check out our dashboard if you don’t have these values.)
+
+Dashboard intro: https://hackmd.io/B2ARb__GQ2SJeLOxuL8sLg
+
+(Please check out the How to get client key tutorial)
+
+
+```
+IMKit.instance()
+    .setUrl(url)
+    .setClientKey(clientKey)
+    .setBucketName(bucketName)
+    .setProviderAuthority(providerAuthority)
+    .init(context);
+```
+url: Your chat server entrypoint URL
+clientKey: Client Key
+bucketName: S3 prefix path of IMKit uploaded file. Default is `imkit`
+providerAuthority: Provider authority string
 
 In your `AndroidManifest.xml`
 
@@ -85,24 +112,118 @@ Add FileProvider for IMKit to access device files and media
 </provider>
 ```
 
-```
-IMKIT.init(context, IMKIT_URL, IMKIT_CLIENT_KEY, IMKIT_BUCKET_NAME, PROVIDER_AUTHORITY);
-```
-IMKIT_URL: Your chat server entrypoint URL
-IMKIT_CLIENT_KEY: Client Key
-IMKIT_BUCKET_NAME: S3 prefix path of IMKit uploaded file. Default is `imkit`
-PROVIDER_AUTHORITY: Provider authority string
+## Step 4 - Show Chat Room List Scene
+We implemented multiple default scenes in IMKIT SDK, and you don’t need generate any swift files to show the chat room list and chat room.
 
-## Usage
-### IMKIT
+Choose a activity or fragment you want to show the chat room list from, and implement the following code to it.
+
+### 1. Prepare user data
+First, we need users to get the chat started. To start, we need three things:
+
+1. userId
+2. username
+3. accessToken
+userId & username are string type, and accessToken is optional string type. So we created currentUserId, currentUserNickname and accessToken for demo purpose.
+
+(It is also completely fine to use the user data from your app)
+
+We also created another user id (called otherUserId) to join the chatroom with the first user.
+
+### 2. Prepare Access Token
+Every time you use the IMKIT API, the IMKIT chat server will verify the accessToken which is generated or issued from it previously. For production mode, there are two ways to generate your access token for IMKIT chat server. One way is to get your own access token from your app server, and the other way is to generate one from the IMKIT chat server. In this section, we will use a null access token to indicate that we are runing under sandbox mode, which is for demo purpose only. DO NOT USE A NULL ACCESS TOKEN FOR PRODUCTION MODE.
+
+If you need more details on access token, please check out this tutorial.
+https://github.com/FUNTEKco/chat-server-document/wiki/%5BAuth%5D-Client-authorization
+
+After fetching the access token from your app server, provide it with userId through connect method of IMKIT.
+
 ```
+IMKit.instance().connect(uid, accessToken);
+```
+
+As for the access token from IMKIT, it will be stored permanently and the IMKit SDK will help handle it until you log out from IMKIT.
+
+### 3. Update User Info
+After successfully connecting to IMKIT server with access token and userId, try to update your user data including the nickname, avatar, and description, in the IMKIT server through updateCurrentUserInfo method.
+```
+IMKit.instance().updateCurrentUserInfo(nickname, avatarUrl, new IMRestCallback<Client>() {
+    @Override
+    public void onResult(Client client) {
+        callback.success();
+    }
+
+    @Override
+    public void onFailure(Call<ApiResponse<Client>> call, Throwable throwable) {
+        
+    }
+});
+```
+
+### 4. Create direct-chat-room
+In order to demonstrate a direct chat with someone in the chatroom, we created a fixed room ID by hashing with inviteeID.
+
+(Chatrooms will not be created repeatedly after executing the method over and over again. Our solid backend server team will handle this.)
+
+IMKit.instance().createRoomWithUser(String inviteeId, final IMRestCallback<Room> callback) {
+    @Override
+    public void onResult(Room room) {
+    }
+});
+
+### 5. Enter chat room list scene
+After setup, it is time to enter the chat room list scene by presenting RoomListFragment.
+
+Here’s a sample code:
+
+```
+public static void showRoomList() {
+    final RoomListFragment fragment = RoomListFragment.newInstance();
+    fragment.setListener(new RoomListFragment.RoomListFragmentListener() {
+
+        @Override
+        public void onRoomSelect(Room room) {
+            // Show chat room
+            pushFragment(ChatFragment.newInstance(room.getId(), Utils.getDisplayRoomTitle(this, room)));
+        }
+
+        @Override
+        public View onCreateRoomListEmptyView(ViewGroup parent) {
+            // You can customize a view to display when there's room list is empty
+        }
+
+        @Override
+        public void onRoomListSearchClick() {
+
+        }
+    });
+
+    // Your implementation of preseting fragment
+    pushFragment(fragment);
+}
+```
+
+
+Please feel free to send your first greeting to the Mock User, with text message or image message maybe. The features included in the chatroom are all default, without any customization.
+
+If there are more ideas you want to implement in your app to make it shine, please check out our documentations.
+
+
+## Demo app
+
+### IMKIT
+Helper module, purposes
+1. Reduce calls to IMKit.instance(), wrap custom parameters and navigation implementation for your customization requirement.
+2. Demonstrate UI cusotmization
+
+```
+// Init
+IMKIT.init(context, IMKIT_URL, IMKIT_CLIENT_KEY, IMKIT_BUCKET_NAME, PROVIDER_AUTHORITY);
 
 // Login IMKit with name (for development/sandbox purpose)
 IMKIT.login(Activity activity, String name, final IIMKIT.Login callback)
 
 // Login IMKit with accessToken and userInfomation (for production)
 // Your should get the access token from your secured server.
-// See https://github.com/FUNTEKco/chat-server-document/wiki/%5BAuth%5D-Client-authorization
 IMKIT.login(String accessToken, String userDisplayName, String userAvatarUrl, String userDescription, final IIMKIT.Login callback)
 
 // Update user's accessToken
