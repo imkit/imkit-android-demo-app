@@ -68,12 +68,34 @@ apply plugin: 'com.google.gms.google-services'
 ```
 
 ## Init SDK
-Call `IMKIT.init(getApplicationContext())` at app module for init IMKit SDK
+
+In your `AndroidManifest.xml`
+
+Add FileProvider for IMKit to access device files and media
+```
+<!--Please replace FileProvider to users-->
+<provider
+    android:name="androidx.core.content.FileProvider"
+    android:authorities="com.imkit.app.fileProvider"
+    android:exported="false"
+    android:grantUriPermissions="true">
+    <meta-data
+        android:name="android.support.FILE_PROVIDER_PATHS"
+        android:resource="@xml/provider_paths"/>
+</provider>
+```
+
+```
+IMKIT.init(context, IMKIT_URL, IMKIT_CLIENT_KEY, IMKIT_BUCKET_NAME, PROVIDER_AUTHORITY);
+```
+IMKIT_URL: Your chat server entrypoint URL
+IMKIT_CLIENT_KEY: Client Key
+IMKIT_BUCKET_NAME: S3 prefix path of IMKit uploaded file. Default is `imkit`
+PROVIDER_AUTHORITY: Provider authority string
 
 ## Usage
 ### IMKIT
 ```
-IMKIT.init(Context context)
 
 // Login IMKit with name (for development/sandbox purpose)
 IMKIT.login(Activity activity, String name, final IIMKIT.Login callback)
