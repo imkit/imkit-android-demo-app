@@ -370,9 +370,7 @@ public class IMKIT {
             callback.failed("no token found");
             return;
         }
-
-        Room room = new Room();
-        IMKit.instance().createAndJoinRoom(room, userIds, true, GROUP_INVITATION_REQUIRED, new IMRestCallback<Room>() {
+        IMKit.instance().createRoomWithUsers(userIds, true, GROUP_INVITATION_REQUIRED, new IMRestCallback<Room>() {
             @Override
             public void onResult(Room room) {
                 callback.success(room.getId(), Utils.getDisplayRoomTitle(context, room));
@@ -386,11 +384,7 @@ public class IMKIT {
             callback.failed("no token found");
             return;
         }
-
-        Room room = new Room();
-        String roomId = IMKit.instance().getDirectChatRoomId(userId);
-        room.setId(roomId);
-        IMKit.instance().createAndJoinRoom(room, userId, false, false, new IMRestCallback<Room>() {
+        IMKit.instance().createRoomWithUser(userId, new IMRestCallback<Room>() {
             @Override
             public void onResult(Room room) {
                 callback.success(room.getId(), Utils.getDisplayRoomTitle(context, room));

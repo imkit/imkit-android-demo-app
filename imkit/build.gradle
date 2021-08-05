@@ -7,7 +7,7 @@ android {
     defaultConfig {
         minSdkVersion 21
         targetSdkVersion 30
-        versionCode 70
+        versionCode 71
         versionName "2.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -40,10 +40,10 @@ dependencies {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
 
-    implementation('com.imkit:imkit-sdk-v3:3.1.340@aar') {
+    implementation('com.imkit:imkit-sdk-v3:3.1.342@aar') {
         transitive = true
     }
-    implementation('com.imkit:imkit-widget-v3:3.1.340@aar')
+    implementation('com.imkit:imkit-widget-v3:3.1.342@aar')
 
     implementation 'androidx.lifecycle:lifecycle-runtime:2.1.0'
     implementation 'androidx.arch.core:core-runtime:2.1.0'
