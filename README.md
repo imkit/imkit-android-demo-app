@@ -1,5 +1,5 @@
 # About IMKit
-Through IMKIT iOS SDK, you will be able to integrate chat into your app easily and efficiently. Follow the simple integration process below to build the chat with feature-rich experience.
+Through IMKIT Android SDK, you will be able to integrate chat into your app easily and efficiently. Follow the simple integration process below to build the chat with feature-rich experience.
 
 
 ## Requirements
@@ -9,7 +9,7 @@ Through IMKIT iOS SDK, you will be able to integrate chat into your app easily a
 
 
 # Get started
-This tutorial provides you a step-by-step guide to install IMKIT iOS SDK to your new project or an existing project you own with minimum efforts. Please check out the details in the complete guide and documents. You can find solutions to related issues you may face during the installations. Let’s get started.
+This tutorial provides you a step-by-step guide to install IMKIT Android SDK to your new project or an existing project you own with minimum efforts. Please check out the details in the complete guide and documents. You can find solutions to related issues you may face during the installations. Let’s get started.
 
 ## Step 1 - Create a Project or install on existed Project
 
