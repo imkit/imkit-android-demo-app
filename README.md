@@ -75,10 +75,12 @@ Call `IMKIT.init(getApplicationContext())` at app module for init IMKit SDK
 ```
 IMKIT.init(Context context)
 
-// Login IMKit with name
+// Login IMKit with name (for development/sandbox purpose)
 IMKIT.login(Activity activity, String name, final IIMKIT.Login callback)
 
-// Login IMKit with accessToken and userInfomation
+// Login IMKit with accessToken and userInfomation (for production)
+// Your should get the access token from your secured server.
+// See https://github.com/FUNTEKco/chat-server-document/wiki/%5BAuth%5D-Client-authorization
 IMKIT.login(String accessToken, String userDisplayName, String userAvatarUrl, String userDescription, final IIMKIT.Login callback)
 
 // Update user's accessToken
