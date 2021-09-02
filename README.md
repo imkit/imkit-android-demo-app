@@ -178,7 +178,17 @@ https://github.com/FUNTEKco/chat-server-document/wiki/%5BAuth%5D-Client-authoriz
 After fetching the access token from your app server, provide it with userId through connect method of IMKIT.
 
 ```
-IMKit.instance().connect(uid, accessToken);
+IMKit.instance().connect(uid, accessTokennew IMRestCallback<Client>() {
+    @Override
+    public void onResult(Client client) {
+        // success
+    }
+
+    @Override
+    public void onFailure(Call<ApiResponse<Client>> call, Throwable throwable) {
+        
+    }
+});
 ```
 
 As for the access token from IMKIT, it will be stored permanently and the IMKit SDK will help handle it until you log out from IMKIT.
@@ -189,7 +199,7 @@ After successfully connecting to IMKIT server with access token and userId, try 
 IMKit.instance().updateCurrentUserInfo(nickname, avatarUrl, new IMRestCallback<Client>() {
     @Override
     public void onResult(Client client) {
-        callback.success();
+        // success
     }
 
     @Override
@@ -240,6 +250,11 @@ public static void showRoomList() {
     // Your implementation of preseting fragment
     pushFragment(fragment);
 }
+```
+
+### 6. Enter a chat room
+```
+pushFragment(ChatFragment.newInstance(SOME_ROOM_ID, ROOM_TITLE);
 ```
 
 
