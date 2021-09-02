@@ -65,6 +65,9 @@ dependencies {
     implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
     implementation 'com.squareup.okhttp3:logging-interceptor:4.9.0'
 
+    // Firebase messaging, optional for push notification
+    implementation ('com.google.firebase:firebase-messaging:20.0.1')
+
 
     //project dependencies
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
