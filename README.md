@@ -127,18 +127,11 @@ Add FileProvider for IMKit to access device files and media
 </provider>
 
 <service
-            android:name="com.imkit.sdk.firebase.IMFirebaseMessagingService">
-            <intent-filter>
-                <action android:name="com.google.firebase.MESSAGING_EVENT"/>
-            </intent-filter>
-        </service>
-
-        <service
-            android:name="com.imkit.sdk.firebase.IMFirebaseMessagingService">
-            <intent-filter>
-                <action android:name="com.google.firebase.MESSAGING_EVENT"/>
-            </intent-filter>
-        </service>
+    android:name="com.imkit.sdk.firebase.IMFirebaseMessagingService">
+    <intent-filter>
+        <action android:name="com.google.firebase.MESSAGING_EVENT"/>
+    </intent-filter>
+</service>
 ```
 
 ## Step 4 - Show Chat Room List Scene
