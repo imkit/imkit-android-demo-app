@@ -15,9 +15,10 @@ This tutorial provides you a step-by-step guide to install IMKIT Android SDK to 
 
 ## Step 2 - Install SDK through Gradle
 
-Add to your project root build.gradle
+### Add to your project root build.gradle
 ```
 buildscript {
+  ext.imkit_version = "3.1.349"
   dependencies {
      classpath "io.realm:realm-gradle-plugin:10.6.1"
      classpath 'com.google.gms:google-services:4.3.8'
@@ -25,7 +26,7 @@ buildscript {
 }
 ```
 
-Add to your application modules' build.gradle
+### Add to your application modules' build.gradle
 ```
 apply plugin: 'com.android.application'
 apply plugin: 'realm-android'
@@ -48,6 +49,9 @@ repositories {
 dependencies {
   ...
     
+    implementation("com.imkit:imkit-sdk-v3:${rootProject.ext.imkit_version}@aar")
+    implementation("com.imkit:imkit-widget-v3:${rootProject.ext.imkit_version}@aar")
+
     implementation 'androidx.multidex:multidex:2.0.1'
     implementation 'androidx.appcompat:appcompat:1.3.1'
     implementation 'com.google.android.material:material:1.5.0-alpha01'
@@ -65,10 +69,6 @@ dependencies {
     implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
     implementation 'com.squareup.okhttp3:logging-interceptor:4.9.0'
 
-    // Firebase messaging, optional for push notification
-    implementation ('com.google.firebase:firebase-messaging:20.0.1')
-
-
     //project dependencies
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     implementation 'androidx.core:core-ktx:1.6.0'
@@ -78,6 +78,25 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
 
+    // Firebase messaging, optional for push notification
+    implementation ('com.google.firebase:firebase-messaging:20.0.1')
+
+    // WebRTC, optional for video call
+    implementation 'org.webrtc:google-webrtc:1.0.32006'
+
+    // Google maps and google location, optional for location message
+    implementation 'com.google.android.gms:play-services-maps:17.0.1'
+    implementation 'com.google.android.gms:play-services-location:18.0.0'
+
+    // ExoPlayer, optional for video and audio message
+    implementation 'com.google.android.exoplayer:exoplayer-core:2.14.1'
+    implementation 'com.google.android.exoplayer:exoplayer-ui:2.14.1'
+
+    // Downloader: optional for file message
+    implementation "androidx.tonyodev.fetch2:xfetch2:3.1.4"
+
+    // Web Parser: optional for URL message preview
+    implementation 'org.jsoup:jsoup:1.12.1'
   ...
 }
 
@@ -114,7 +133,7 @@ clientKey: Client Key
 bucketName: S3 prefix path of IMKit uploaded file. Default is `imkit`
 providerAuthority: Provider authority string
 
-In your `AndroidManifest.xml`
+### In your `AndroidManifest.xml`
 
 Add permissions
 ```
