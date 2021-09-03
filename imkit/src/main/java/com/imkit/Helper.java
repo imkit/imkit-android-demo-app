@@ -8,6 +8,7 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.telephony.TelephonyManager;
 import android.text.TextUtils;
+import android.util.Log;
 
 import com.imkit.sdk.ApiResponse;
 import com.imkit.sdk.IMKit;
@@ -40,6 +41,8 @@ import retrofit2.Call;
 import static android.content.Context.TELEPHONY_SERVICE;
 
 class Helper {
+
+    private static final String TAG = "Helper";
 
     private static final MediaType JSON = MediaType.parse("application/json; charset=utf-8");
 
@@ -82,21 +85,29 @@ class Helper {
 
         TelephonyManager telephonyManager = (TelephonyManager) activity.getSystemService(TELEPHONY_SERVICE);
         String imei = "";
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
-            imei = telephonyManager.getImei();
-        } else {
-            imei = telephonyManager.getDeviceId();
-        }
-        if (!TextUtils.isEmpty(imei)) {
-            sb.append(imei);
-            return sb.toString();
+        try {
+            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+                imei = telephonyManager.getImei();
+            } else {
+                imei = telephonyManager.getDeviceId();
+            }
+            if (!TextUtils.isEmpty(imei)) {
+                sb.append(imei);
+                return sb.toString();
+            }
+        } catch(Exception e) {
+            Log.e(TAG, "get IMEI error", e);
         }
 
-        String serial;
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            serial = Build.getSerial();
-        } else {
-            serial = Build.SERIAL;
+        String serial = "";
+        try {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                serial = Build.getSerial();
+            } else {
+                serial = Build.SERIAL;
+            }
+        } catch(Exception e) {
+            Log.e(TAG, "get serial error", e);
         }
         sb.append(Build.MODEL).append("-").append("-").append(serial);
         return sb.toString();

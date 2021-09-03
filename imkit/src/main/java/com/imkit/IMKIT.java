@@ -113,7 +113,9 @@ public class IMKIT {
         IMKit.instance().setTimeout(120000);
 
         IMKit.instance().setChatRoomType(IMKit.ChatRoomType.TYPE_3);
-        IMKit.instance().setRoomInfoType(IMKit.RoomInfoType.TYPE_2);
+
+        IMWidgetPreferences.getInstance().setRoomInfoEnabled(true);
+        IMWidgetPreferences.getInstance().setRoomInfoType(IMWidgetPreferences.RoomInfoType.SIMPLE);
         IMKit.instance().setLocationFullMap(true);
 
         IMWidgetPreferences.getInstance().setShowTyping(true);

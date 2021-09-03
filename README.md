@@ -52,6 +52,14 @@ dependencies {
     implementation("com.imkit:imkit-sdk-v3:${rootProject.ext.imkit_version}@aar")
     implementation("com.imkit:imkit-widget-v3:${rootProject.ext.imkit_version}@aar")
 
+    implementation "androidx.arch.core:core-runtime:2.1.0"
+
+    implementation "androidx.lifecycle:lifecycle-runtime:2.3.1"
+    // optional - ProcessLifecycleOwner provides a lifecycle for the whole application process
+    implementation "androidx.lifecycle:lifecycle-process:2.3.1"
+    // alternately - if using Java8, use the following instead of lifecycle-compiler
+    implementation "androidx.lifecycle:lifecycle-common-java8:2.3.1
+    
     implementation 'androidx.multidex:multidex:2.0.1'
     // appcompat:1.3.1 has error java.lang.NoClassDefFoundError: Failed resolution of: Landroidx/lifecycle/ViewTreeLifecycleOwner;
     implementation 'androidx.appcompat:appcompat:1.2.0'
