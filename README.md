@@ -3,9 +3,9 @@ Through IMKIT Android SDK, you will be able to integrate chat into your app easi
 
 
 ## Requirements
-- Android SDK Version 16+
-- Android Studio
-- Gradle 4.2.1+
+- Android SDK Version 23+
+- Android Studio 3.1+ 
+- Gradle 4.2.2+
 
 
 # Get started
@@ -64,8 +64,6 @@ dependencies {
     // appcompat:1.3.1 has error java.lang.NoClassDefFoundError: Failed resolution of: Landroidx/lifecycle/ViewTreeLifecycleOwner;
     implementation 'androidx.appcompat:appcompat:1.2.0'
 
-    // Note: KOKO reported that the version 1.2.1 are unstable.
-    // implementation 'com.google.android.material:material:1.1.0'
     implementation 'com.google.android.material:material:1.4.0'
 
     implementation 'androidx.recyclerview:recyclerview:1.2.1'
@@ -89,6 +87,7 @@ dependencies {
     // Firebase messaging, optional for push notification
     implementation ('com.google.firebase:firebase-messaging:22.0.0')
     implementation 'org.jsoup:jsoup:1.12.1'
+
     // WebRTC
     implementation 'org.webrtc:google-webrtc:1.0.32006'
 
