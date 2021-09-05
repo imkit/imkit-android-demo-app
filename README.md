@@ -4,7 +4,7 @@
 ![Platform](https://img.shields.io/badge/platform-ANDROID-orange.svg)
 
 
-# About IMKit
+# About IMKIT
 Through IMKIT Android SDK, you will be able to integrate chat into your app easily and efficiently. Follow the simple integration process below to build the chat with feature-rich experience.
 
 
