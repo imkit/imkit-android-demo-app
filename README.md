@@ -9,9 +9,10 @@ Through IMKIT Android SDK, you will be able to integrate chat into your app easi
 
 
 ## Requirements
-- Android SDK Version 23+
+- Android 6.0 (API level 23) or higher
 - Android Studio 3.1+ 
-- Gradle 4.2.2+
+- Java 8 or higher
+- Android Gradle plugin 4.2.2 or higher
 
 
 # Get started
