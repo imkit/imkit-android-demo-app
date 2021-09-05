@@ -1,3 +1,9 @@
+# IMKIT Android samples
+
+![Languages](https://img.shields.io/badge/language-JAVA-orange.svg)
+![Platform](https://img.shields.io/badge/platform-ANDROID-orange.svg)
+
+
 # About IMKit
 Through IMKIT Android SDK, you will be able to integrate chat into your app easily and efficiently. Follow the simple integration process below to build the chat with feature-rich experience.
 
