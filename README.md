@@ -27,7 +27,7 @@ This tutorial provides you a step-by-step guide to install IMKIT Android SDK to 
 buildscript {
   ext.imkit_version = "3.1.350"
   dependencies {
-     classpath "io.realm:realm-gradle-plugin:10.8.1"
+     classpath "io.realm:realm-gradle-plugin:10.8.0"
      classpath 'com.google.gms:google-services:4.3.10'
   }
 }
