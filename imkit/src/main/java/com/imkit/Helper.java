@@ -1,44 +1,25 @@
 package com.imkit;
 
-import android.Manifest;
 import android.app.Activity;
 import android.content.Context;
-import android.content.pm.PackageManager;
-import android.os.AsyncTask;
+import android.content.SharedPreferences;
 import android.os.Build;
-import android.telephony.TelephonyManager;
+import android.provider.Settings;
 import android.text.TextUtils;
 import android.util.Log;
+
+import androidx.annotation.NonNull;
 
 import com.imkit.sdk.ApiResponse;
 import com.imkit.sdk.IMKit;
 import com.imkit.sdk.IMRestCallback;
-import com.imkit.sdk.model.Client;
 import com.imkit.sdk.model.Room;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.io.IOException;
-import java.io.UnsupportedEncodingException;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.Locale;
-import java.util.Map;
 import java.util.UUID;
 
-import androidx.core.app.ActivityCompat;
 import okhttp3.MediaType;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.RequestBody;
-import okhttp3.Response;
 import retrofit2.Call;
-
-import static android.content.Context.TELEPHONY_SERVICE;
 
 class Helper {
 
@@ -72,44 +53,41 @@ class Helper {
         return name.toLowerCase(Locale.US).replaceAll("[^a-zA-Z0-9]+", "-");
     }
 
-    // For demo purpose, you can implement your own unique device ID getter.
-    static String getDeviceId(Activity activity) {
-
-        if (ActivityCompat.checkSelfPermission(activity, android.Manifest.permission.READ_PHONE_STATE) != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(activity, new String[]{Manifest.permission.READ_PHONE_STATE}, 666);
-            return "";
+    public static String getDeviceId(Activity activity) {
+        final String generalAndroidId = "9774d56d682e549c";
+        String deviceId = getSavedDeviceId(activity);
+        if (deviceId == null || deviceId.isEmpty()) {
+            String uniqueID = "";
+            try {
+                uniqueID = Settings.Secure.getString(activity.getContentResolver(), Settings.Secure.ANDROID_ID);
+            } catch(Exception e) {
+                Log.e(TAG, "getDeviceId error", e);
+            }
+            if (TextUtils.isEmpty(uniqueID) || uniqueID.equals(generalAndroidId)) {
+                uniqueID = UUID.randomUUID().toString();
+            }
+            saveDeviceId(activity, Build.BRAND + "-" + uniqueID);
+            deviceId = uniqueID;
         }
 
-        StringBuilder sb = new StringBuilder();
-        sb.append(Build.BRAND).append("-");
+        return deviceId;
+    }
 
-        TelephonyManager telephonyManager = (TelephonyManager) activity.getSystemService(TELEPHONY_SERVICE);
-        String imei = "";
-        try {
-            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
-                imei = telephonyManager.getImei();
-            } else {
-                imei = telephonyManager.getDeviceId();
-            }
-            if (!TextUtils.isEmpty(imei)) {
-                sb.append(imei);
-                return sb.toString();
-            }
-        } catch(Exception e) {
-            Log.e(TAG, "get IMEI error", e);
-        }
+    private static final String PREF_APP = "imkit";
+    private static final String KEY_DEVICE_ID = "deviceId";
 
-        String serial = "";
-        try {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                serial = Build.getSerial();
-            } else {
-                serial = Build.SERIAL;
-            }
-        } catch(Exception e) {
-            Log.e(TAG, "get serial error", e);
-        }
-        sb.append(Build.MODEL).append("-").append("-").append(serial);
-        return sb.toString();
+    static String getSavedDeviceId(@NonNull Context context) {
+        SharedPreferences preferences = context.getSharedPreferences(PREF_APP, Context.MODE_PRIVATE);
+
+        return preferences.getString(KEY_DEVICE_ID, null);
+    }
+
+    static void saveDeviceId(@NonNull Context context, @NonNull String uniqueID) {
+        SharedPreferences preferences = context.getSharedPreferences(PREF_APP, Context.MODE_PRIVATE);
+
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putString(KEY_DEVICE_ID, uniqueID);
+
+        editor.apply();
     }
 }
