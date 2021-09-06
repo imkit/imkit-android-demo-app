@@ -93,9 +93,8 @@ dependencies {
 
     // Firebase messaging, optional for push notification
     implementation ('com.google.firebase:firebase-messaging:22.0.0')
-    implementation 'org.jsoup:jsoup:1.12.1'
 
-    // WebRTC
+    // WebRTC, Optional for video and audio calls
     implementation 'org.webrtc:google-webrtc:1.0.32006'
 
     // Google maps and google location, optional for location message
