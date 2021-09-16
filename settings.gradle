@@ -1,1 +1,2 @@
-include ':app', ':imkit'
+rootProject.name = "IMKit_Demo"
+include ':app'

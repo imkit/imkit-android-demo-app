@@ -1,3 +1,30 @@
 <resources>
-    <string name="app_name">IMKit Demo App</string>
+    <string name="app_name">IMKIT Sample</string>
+
+    <!-- Login -->
+    <string name="login_client_id_hint">Client ID</string>
+    <string name="login_client_nickname_hint">Nickname</string>
+    <string name="login_sign_in">Sign in</string>
+    <string name="login_choose_avatar">Choose your avatar</string>
+    <string name="login_next_step">Next step</string>
+
+    <!-- Navigate -->
+    <string name="navigate_title">Sample list</string>
+    <string name="navigate_exit">Sign out</string>
+    <string name="navigate_trading_platform">Trading platform</string>
+    <string name="navigate_chat_in_banking">Chat in banking</string>
+    <string name="navigate_networking_chat">Networking chat</string>
+    <string name="navigate_business_chat">Business chat</string>
+    <string name="navigate_trading_platform_info">1. custom navigation bar color\n2. custom 訊息泡泡框顏色\n3. 聊天室入框上方警語</string>
+    <string name="navigate_chat_in_banking_info">1. 官方帳號聊天室\n2. custom 訊息泡泡框顏色邊框\n3. custom message type</string>
+    <string name="navigate_networking_chat_info">1. custom navigation bar 內容\n2. custom 訊息泡泡框形狀style</string>
+    <string name="navigate_business_chat_info">1. Search bar\n2. Folder\n3. Tag\n4. custom menu item （按＋之後顯示的選單按鈕們）\n5. 訊息動作（複製、收回、轉傳、回覆）\n6. 翻譯功能（請在這邊顯示預設開）</string>
+
+    <!--Trading Platform -->
+    <string name="trading_platform_next">Talk to Seller</string>
+
+    <!-- Common -->
+    <string name="common_back">Back</string>
+    <string name="common_start">Start</string>
+
 </resources>

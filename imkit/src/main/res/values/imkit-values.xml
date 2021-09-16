@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <string name="IMKIT_URL" translatable="false">https://chat.fangho.com</string>
-    <string name="IMKIT_AUTH_URL" translatable="false">https://auth.fangho.com</string>
-    <string name="IMKIT_API_KEY" translatable="false">fangho_imkit_0412_2018_001_apikey</string>
-    <string name="IMKIT_CLIENT_KEY" translatable="false">fangho_imkit_0412_2018_001_clientkey</string>
-    <string name="IMKIT_BUCKET_NAME" translatable="false">chatserver-upload</string>
-</resources>

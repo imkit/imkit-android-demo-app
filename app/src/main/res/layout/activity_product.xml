@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.navigation.NavigateActivity">
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideLeft"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="20dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideRight"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintGuide_end="20dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideBottom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.92" />
+
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/layout_toolbar" />
+
+    <ScrollView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:paddingTop="16dp"
+        android:paddingBottom="16dp"
+        android:scrollbars="none"
+        app:layout_constraintBottom_toTopOf="@id/btnNext"
+        app:layout_constraintEnd_toStartOf="@id/guideRight"
+        app:layout_constraintStart_toEndOf="@id/guideLeft"
+        app:layout_constraintTop_toBottomOf="@id/toolbar">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="235dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/img_trading_platform_demo" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14dp"
+                android:text="Porsche 356 C"
+                android:textColor="@color/colorBlack"
+                android:textSize="20sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="NT$ 2,909,855"
+                android:textColor="@color/colorDarkRed"
+                android:textSize="14sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="Features\nRaised bumpers with bumper guards with pronounced tapering at the top // One - piece curved wind\nscreen // Flat hub caps // Logo on rear with additional &quot;90 &quot; // Front luggage compartment lid slightly squared off // Air grille in front of windscreen // Filler flap in front right wing\n Cabriolet : Plastic rear window can be opened using a zip"
+                android:textColor="@color/colorGrey"
+                android:textSize="17sp" />
+        </LinearLayout>
+
+    </ScrollView>
+
+    <Button
+        android:id="@+id/btnNext"
+        style="@style/ButtonText"
+        android:layout_width="164dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/selector_button_style1_30"
+        android:drawableStart="@drawable/ic_imkit_logo"
+        android:drawablePadding="6dp"
+        android:elevation="3dp"
+        android:text="@string/trading_platform_next"
+        android:textColor="@color/colorDarkGrey"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@id/guideBottom"
+        app:layout_constraintEnd_toStartOf="@id/guideRight" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

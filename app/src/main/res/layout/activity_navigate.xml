@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.navigation.NavigateActivity">
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideTop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.18" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideLeft"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="40dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideRight"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintGuide_end="40dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideBottom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.95" />
+
+    <TextView
+        android:id="@+id/tvTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/navigate_title"
+        android:textColor="@color/colorBlue"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/guideTop" />
+
+    <Button
+        android:id="@+id/btnStyle1"
+        style="@style/ButtonText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/selector_button_style1_30"
+        android:elevation="3dp"
+        android:text="@string/navigate_trading_platform"
+        android:textColor="@color/color_style1_text"
+        app:layout_constraintEnd_toStartOf="@id/guideRight"
+        app:layout_constraintStart_toEndOf="@id/guideLeft"
+        app:layout_constraintTop_toBottomOf="@id/tvTitle" />
+
+    <Button
+        android:id="@+id/btnStyle2"
+        style="@style/ButtonText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/selector_button_style2_30"
+        android:elevation="3dp"
+        android:text="@string/navigate_chat_in_banking"
+        android:textColor="@color/color_style2_text"
+        app:layout_constraintEnd_toStartOf="@id/guideRight"
+        app:layout_constraintStart_toEndOf="@id/guideLeft"
+        app:layout_constraintTop_toBottomOf="@id/btnStyle1" />
+
+    <Button
+        android:id="@+id/btnStyle3"
+        style="@style/ButtonText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/selector_button_style3_30"
+        android:elevation="3dp"
+        android:text="@string/navigate_networking_chat"
+        android:textColor="@color/color_style3_text"
+        app:layout_constraintEnd_toStartOf="@id/guideRight"
+        app:layout_constraintStart_toEndOf="@id/guideLeft"
+        app:layout_constraintTop_toBottomOf="@id/btnStyle2" />
+
+    <Button
+        android:id="@+id/btnStyle4"
+        style="@style/ButtonText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/selector_button_style4_30"
+        android:elevation="3dp"
+        android:text="@string/navigate_business_chat"
+        android:textColor="@color/color_style4_text"
+        app:layout_constraintEnd_toStartOf="@id/guideRight"
+        app:layout_constraintStart_toEndOf="@id/guideLeft"
+        app:layout_constraintTop_toBottomOf="@id/btnStyle3" />
+
+    <Button
+        android:id="@+id/btnExit"
+        style="@style/ButtonText.Border"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="36dp"
+        android:text="@string/navigate_exit"
+        app:layout_constraintBottom_toTopOf="@id/tvVersion"
+        app:layout_constraintEnd_toStartOf="@id/guideRight"
+        app:layout_constraintStart_toEndOf="@id/guideLeft" />
+
+    <TextView
+        android:id="@+id/tvVersion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="SDK v1.0.0"
+        android:textColor="@color/colorGrey"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@id/guideBottom"
+        app:layout_constraintEnd_toStartOf="@id/guideRight"
+        app:layout_constraintStart_toEndOf="@id/guideLeft" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
