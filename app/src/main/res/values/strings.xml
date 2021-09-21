@@ -23,6 +23,10 @@
     <!--Trading Platform -->
     <string name="trading_platform_next">Talk to Seller</string>
 
+    <!--Chat in Banking -->
+    <string name="chat_in_banking_transfer">Transfer</string>
+    <string name="chat_in_banking_request">Request</string>
+
     <!-- Common -->
     <string name="common_back">Back</string>
     <string name="common_start">Start</string>

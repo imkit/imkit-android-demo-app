@@ -8,6 +8,9 @@ class DemoUtils {
 
     companion object {
         public const val DEMO_TYPE = "demo_type"
+        const val MESSAGE_TYPE_TRANSFER = "transfer"
+        const val MESSAGE_TYPE_REQUEST = "request"
+
         private const val INITIAL = "initial"
         private const val LOGIN = "login"
         private const val CLIENT_ID = "client_id"

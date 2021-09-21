@@ -55,6 +55,10 @@
             android:configChanges="orientation|keyboardHidden|screenSize" />
 
         <activity
+            android:name=".ui.chatInBanking.ChatInBankingActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize" />
+
+        <activity
             android:name=".ui.networkingChat.NetworkingChatListActivity"
             android:configChanges="orientation|keyboardHidden|screenSize" />
 

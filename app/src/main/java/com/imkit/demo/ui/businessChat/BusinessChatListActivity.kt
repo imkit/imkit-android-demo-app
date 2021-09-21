@@ -14,7 +14,6 @@ import androidx.core.content.ContextCompat
 import com.imkit.demo.R
 import com.imkit.demo.UIUtils
 import com.imkit.demo.databinding.ActivityNetworkingChatListBinding
-import com.imkit.sdk.IMKit
 import com.imkit.sdk.model.Room
 import com.imkit.widget.IMWidgetPreferences
 import com.imkit.widget.fragment.RoomListFragment
@@ -57,6 +56,7 @@ class BusinessChatListActivity : AppCompatActivity() {
         IMWidgetPreferences.getInstance().also {
             it.isRoomListSearchEnabled = true
             it.buttonTint = colorBlue
+            it.roomViewFactory = BusinessChatRoomView.Factory()
         }
         val roomListFragment = CustomRoomListFragment.newInstance(null)
         roomListFragment.setListener(object : RoomListFragment.RoomListFragmentListener {

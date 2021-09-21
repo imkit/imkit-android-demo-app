@@ -50,6 +50,7 @@ class NetworkingChatListActivity : AppCompatActivity() {
 
         IMWidgetPreferences.getInstance().also {
             it.isRoomListSearchEnabled = false
+            it.roomViewFactory = NetworkChatRoomView.Factory()
         }
         val roomListFragment = CustomRoomListFragment.newInstance(null)
         roomListFragment.setListener(object : RoomListFragment.RoomListFragmentListener {

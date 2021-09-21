@@ -1,5 +1,6 @@
 package com.imkit.demo.ui.chatInBanking
 
+import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.view.Gravity
@@ -9,12 +10,15 @@ import android.view.ViewGroup
 import android.widget.FrameLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import com.imkit.demo.DemoUtils
 import com.imkit.demo.R
 import com.imkit.demo.UIUtils
 import com.imkit.demo.databinding.ActivityChatInBankingListBinding
 import com.imkit.sdk.model.Room
 import com.imkit.widget.IMWidgetPreferences
 import com.imkit.widget.fragment.RoomListFragment
+import com.imkit.widget.utils.MessageDirection
+import com.imkit.widget.utils.Utils
 
 
 class ChatInBankingListActivity : AppCompatActivity() {
@@ -48,24 +52,25 @@ class ChatInBankingListActivity : AppCompatActivity() {
 
         IMWidgetPreferences.getInstance().also {
             it.isRoomListSearchEnabled = false
+            it.roomViewFactory = ChatInBankingRoomView.Factory()
         }
         val roomListFragment = CustomRoomListFragment.newInstance(null)
         roomListFragment.setListener(object : RoomListFragment.RoomListFragmentListener {
             override fun onRoomSelect(room: Room?) {
                 room?.also { select ->
                     val context = this@ChatInBankingListActivity
-//                    startActivity(
-//                        Intent(
-//                            context,
-//                            ChatInBankingListActivity::class.java
-//                        ).apply {
-//                            putExtra(ChatInBankingListActivity.ROOM_ID, select.id)
-//                            putExtra(
-//                                ChatInBankingListActivity.ROOM_TITLE,
-//                                Utils.getDisplayRoomTitle(context, select)
-//                            )
-//                        }
-//                    )
+                    startActivity(
+                        Intent(
+                            context,
+                            ChatInBankingActivity::class.java
+                        ).apply {
+                            putExtra(ChatInBankingActivity.ROOM_ID, select.id)
+                            putExtra(
+                                ChatInBankingActivity.ROOM_TITLE,
+                                Utils.getDisplayRoomTitle(context, select)
+                            )
+                        }
+                    )
                 }
             }
 
