@@ -351,3 +351,8 @@ user can customize roomlist / chatroom / roomInfo at imkit module
 - chatroom : com.imkit.CustomChatFragment
 - roomInfo : com.imkit.CustomRoomInfoFragment
 ```
+
+### Contact us
+You can connect us via https://pinchat.me/customersupport or email to imkit@funtek.co
+
+
