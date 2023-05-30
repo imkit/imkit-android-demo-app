@@ -19,10 +19,12 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
+        android:usesCleartextTraffic="true"
         android:theme="@style/AppTheme">
 
         <activity
             android:name=".ui.login.LoginActivity"
+            android:exported="true"
             android:configChanges="orientation|keyboardHidden|screenSize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -32,46 +34,57 @@
 
         <activity
             android:name=".ui.login.AvatarActivity"
+            android:exported="false"
             android:configChanges="orientation|keyboardHidden|screenSize" />
 
         <activity
             android:name=".ui.navigation.NavigateActivity"
+            android:exported="false"
             android:configChanges="orientation|keyboardHidden|screenSize" />
 
         <activity
             android:name=".ui.navigation.NavigateInfoActivity"
+            android:exported="false"
             android:configChanges="orientation|keyboardHidden|screenSize" />
 
         <activity
             android:name=".ui.tradingPlatform.ProductActivity"
+            android:exported="false"
             android:configChanges="orientation|keyboardHidden|screenSize" />
 
         <activity
             android:name=".ui.tradingPlatform.TradingPlatformActivity"
+            android:exported="false"
             android:configChanges="orientation|keyboardHidden|screenSize" />
 
         <activity
             android:name=".ui.chatInBanking.ChatInBankingListActivity"
+            android:exported="false"
             android:configChanges="orientation|keyboardHidden|screenSize" />
 
         <activity
             android:name=".ui.chatInBanking.ChatInBankingActivity"
+            android:exported="false"
             android:configChanges="orientation|keyboardHidden|screenSize" />
 
         <activity
             android:name=".ui.networkingChat.NetworkingChatListActivity"
+            android:exported="false"
             android:configChanges="orientation|keyboardHidden|screenSize" />
 
         <activity
             android:name=".ui.networkingChat.NetworkingChatActivity"
+            android:exported="false"
             android:configChanges="orientation|keyboardHidden|screenSize" />
 
         <activity
             android:name=".ui.businessChat.BusinessChatActivity"
+            android:exported="false"
             android:configChanges="orientation|keyboardHidden|screenSize" />
 
         <activity
             android:name=".ui.businessChat.BusinessChatListActivity"
+            android:exported="false"
             android:configChanges="orientation|keyboardHidden|screenSize" />
 
         <provider
